@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>税理士事務所の見本｜三河ウェブ製作所</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ec;--pp:#fff;--nv:#1d2b4a;--n2:#2a3c63;--ink:#232a38;--sub:#667085;--gd:#b8975a;--gl:#efe6d3;--e:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",sans-serif;font-weight:500;line-height:1.95;overflow-x:hidden;padding-top:var(--top,0px)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.w{width:min(1080px,100% - 36px);margin-inline:auto}
+.sf{font-family:"Noto Serif JP",serif;font-weight:700}
+svg{display:block}
+
+.hd{position:sticky;top:var(--top,0px);z-index:40;background:rgba(246,243,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(29,43,74,.12)}
+.hd .w{display:flex;align-items:center;gap:22px;height:66px}
+.logo{font-size:19px;color:var(--nv);display:flex;align-items:center;gap:10px}
+.logo::before{content:"";width:9px;height:26px;background:var(--gd)}
+.hd nav{margin-left:auto;display:flex;gap:22px;font-size:14px}
+.hd nav a{background:linear-gradient(var(--gd),var(--gd)) 0 100%/0 1px no-repeat;transition:background-size .35s}
+.hd nav a:hover{background-size:100% 1px}
+.bt{display:inline-flex;align-items:center;gap:10px;background:var(--nv);color:#fff;font-weight:700;padding:12px 26px;border-radius:4px;position:relative;overflow:hidden;border:0}
+.bt::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-100%);transition:transform .7s}
+.bt:hover::after{transform:translateX(100%)}
+.bt.gd{background:var(--gd)}
+.logo,.hd .bt{white-space:nowrap}
+@media(max-width:820px){.hd nav{display:none}.hd .w{gap:8px}.logo{font-size:15px;gap:7px}.hd .bt{margin-left:auto;padding:8px 12px;font-size:12px}}
+
+/* 最初の画面：線がのびるグラフ */
+.hero .w{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:60px 0 80px}
+.hero small{color:var(--gd);font-weight:700;letter-spacing:.2em;font-size:12px}
+.hero h1{font-size:clamp(30px,4.2vw,52px);line-height:1.6;color:var(--nv);margin-top:10px;letter-spacing:.04em}
+.hero h1 span{background:linear-gradient(transparent 68%,var(--gl) 68%) 0 0/0 100% no-repeat;animation:mk 1.2s var(--e) 1s forwards}
+@keyframes mk{to{background-size:100% 100%}}
+.hero p{color:var(--sub);margin:18px 0 26px;max-width:27em}
+.hero .bts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero .bts span{font-size:13px;color:var(--sub)}
+.pn{background:var(--nv);color:#fff;border-radius:10px;padding:28px 28px 22px;position:relative;box-shadow:0 30px 60px -30px rgba(29,43,74,.7)}
+.pn>small{color:#aab4cc;letter-spacing:.1em}
+.pn svg{width:100%;overflow:visible;margin:10px 0 6px}
+.pn .gr{stroke:rgba(255,255,255,.1);stroke-width:1}
+.pn .ln{fill:none;stroke:var(--gd);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dr 2.6s var(--e) .5s forwards}
+.pn .ar{fill:url(#ag);opacity:0;animation:fd 1.2s 2s forwards}
+.pn .dt{fill:var(--gd);offset-path:path("M0 150 60 138 120 142 180 110 240 96 300 60 360 40");offset-distance:0%;animation:mv 2.6s var(--e) .5s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}@keyframes fd{to{opacity:1}}@keyframes mv{to{offset-distance:100%}}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.14);padding-top:14px}
+.kp div{font-size:11px;color:#aab4cc;line-height:1.5}.kp b{display:block;font-size:26px;color:#fff;font-family:"Noto Serif JP"}.kp b small{font-size:12px}
+.sl{position:absolute;right:-14px;top:-18px;width:92px;height:92px;border-radius:50%;background:var(--gd);color:#fff;display:grid;place-content:center;text-align:center;font-size:11px;line-height:1.35;font-weight:700;animation:sp 9s linear infinite}
+.sl b{font-size:17px}@keyframes sp{50%{transform:rotate(8deg) scale(1.05)}}
+@media(max-width:820px){.hero .w{grid-template-columns:1fr;padding:34px 0 56px}.sl{right:-4px}}
+
+.sec{padding:88px 0}
+.sec.wh{background:var(--pp)}
+.hh{margin-bottom:38px}
+.hh small{color:var(--gd);font-weight:700;letter-spacing:.2em;font-size:12px;display:flex;align-items:center;gap:12px}
+.hh small::before{content:"";width:34px;height:1px;background:var(--gd)}
+h2{font-size:clamp(24px,3.1vw,36px);line-height:1.6;color:var(--nv);letter-spacing:.04em}
+.hh p{color:var(--sub);font-size:15px}
+[data-r]{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s var(--e)}
+[data-r].in{opacity:1;transform:none}
+
+/* お悩みチェック：しるしを付けると、目盛りがのびる */
+.ck{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:start}
+.ck ul{list-style:none;display:grid;gap:10px}
+.ck label{display:flex;gap:14px;align-items:center;background:var(--bg);border:1.5px solid transparent;border-radius:8px;padding:13px 18px;cursor:pointer;transition:border-color .3s,background .3s,transform .3s var(--e)}
+.ck label:hover{transform:translateX(4px)}
+.ck input{position:absolute;opacity:0}
+.ck label i{flex:0 0 22px;height:22px;border:1.5px solid var(--nv);border-radius:4px;display:grid;place-content:center;transition:background .25s}
+.ck label i svg{width:14px;fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .3s .1s}
+.ck input:checked+i{background:var(--nv)}.ck input:checked+i svg{stroke-dashoffset:0}
+.ck label:has(input:checked){border-color:var(--gd);background:#fbf7ee}
+.ck label:has(input:focus-visible){outline:2px solid var(--gd)}
+.mt{position:sticky;top:calc(var(--top,0px) + 90px);background:var(--nv);color:#fff;border-radius:10px;padding:26px}
+.mt small{color:#aab4cc}
+.mt .br{height:10px;border-radius:10px;background:rgba(255,255,255,.14);margin:12px 0 16px;overflow:hidden}
+.mt .br i{display:block;height:100%;width:calc(var(--v,0)*100%);background:linear-gradient(90deg,var(--gd),#e3c78e);border-radius:10px;transition:width .6s var(--e)}
+.mt b{font-family:"Noto Serif JP";font-size:20px;display:block;line-height:1.6;min-height:3.2em}
+.mt .bt{margin-top:14px;width:100%;justify-content:center}
+@media(max-width:820px){.ck{grid-template-columns:1fr}.mt{position:static}}
+
+/* 料金の目安：動かすと、数字が変わる */
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--pp);border-radius:10px;overflow:hidden;box-shadow:0 24px 50px -34px rgba(29,43,74,.6)}
+.sim .in0{padding:34px}
+.fd{margin-bottom:24px}
+.fd>span{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}.fd>span b{color:var(--nv);font-size:17px}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--gd) calc(var(--f,0)*100%),#e4dfd3 0);outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--nv);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:grab}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--nv);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.sg{display:flex;border:1.5px solid var(--nv);border-radius:6px;overflow:hidden}
+.sg button{flex:1;background:none;border:0;padding:8px 4px;font-size:13px;font-weight:700;transition:background .3s,color .3s}
+.sg button[aria-pressed=true]{background:var(--nv);color:#fff}
+.sim .out{background:var(--nv);color:#fff;padding:34px;display:flex;flex-direction:column;justify-content:center}
+.sim .out small{color:#aab4cc}
+.sim .out .pr{font-family:"Noto Serif JP";font-size:clamp(44px,6vw,68px);line-height:1.2;color:#e3c78e}.sim .out .pr small{font-size:16px;color:#fff}
+.bk{display:flex;height:10px;border-radius:10px;overflow:hidden;margin:16px 0 10px;gap:2px}
+.bk i{background:var(--c);flex:var(--g) 1 0;min-width:0;transition:flex-grow .6s var(--e)}
+.lg{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:#cfd6e6}.lg span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
+.sim .out p{font-size:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.14);padding-top:12px}
+.sim+small{display:block;margin-top:12px;font-size:12px;color:var(--sub)}
+@media(max-width:820px){.sim{grid-template-columns:1fr}.sim .in0,.sim .out{padding:24px 20px}}
+
+/* 1 年の予定：今月が光る */
+.yr{display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
+.yr button{background:var(--bg);border:1.5px solid transparent;border-radius:8px;padding:12px 0 10px;font-family:"Noto Serif JP";font-weight:700;font-size:18px;color:var(--nv);position:relative;transition:transform .35s var(--e),background .3s,color .3s}
+.yr button small{display:block;font:500 10px "Noto Sans JP";color:var(--sub);transition:color .3s}
+.yr button:hover{transform:translateY(-4px)}
+.yr button.nw::after{content:"今月";position:absolute;left:50%;top:-11px;transform:translateX(-50%);background:var(--gd);color:#fff;font:700 10px "Noto Sans JP";padding:1px 8px;border-radius:99px;line-height:1.6}
+.yr button[aria-pressed=true]{background:var(--nv);color:#fff}.yr button[aria-pressed=true] small{color:#aab4cc}
+.yd{margin-top:18px;background:var(--bg);border-left:4px solid var(--gd);border-radius:0 8px 8px 0;padding:20px 26px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.yd b{font-family:"Noto Serif JP";font-size:44px;color:var(--nv);line-height:1}
+.yd ul{list-style:none;transition:opacity .25s,transform .4s var(--e)}
+.yd.sw ul{opacity:0;transform:translateX(14px)}
+.yd li{padding-left:18px;position:relative}.yd li::before{content:"";position:absolute;left:0;top:.85em;width:8px;height:1.5px;background:var(--gd)}
+@media(max-width:820px){.yr{grid-template-columns:repeat(6,1fr)}.yd{grid-template-columns:1fr;gap:6px}.sec{padding:60px 0}}
+
+/* よくある質問 */
+.fq{max-width:800px}
+.fq div{border-bottom:1px solid rgba(29,43,74,.14)}
+.fq button{width:100%;background:none;border:0;text-align:left;padding:18px 40px 18px 0;font-weight:700;font-size:16px;position:relative}
+.fq button::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:2px solid var(--gd);border-bottom:2px solid var(--gd);transform:translateY(-70%) rotate(45deg);transition:transform .4s var(--e)}
+.fq .on button::after{transform:translateY(-30%) rotate(225deg)}
+.fq section{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--e)}
+.fq .on section{grid-template-rows:1fr}
+.fq section p{overflow:hidden;color:var(--sub);font-size:15px}
+.fq .on section p{padding-bottom:18px}
+
+.cta{background:var(--nv);color:#fff;text-align:center;padding:80px 0 130px}
+.cta h2{color:#fff}
+.cta p{color:#cfd6e6;margin:8px 0 24px}
+.cta small{display:block;margin-top:26px;font-size:12px;color:#8e9ab5}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-r]{opacity:1;transform:none}.pn .ln{stroke-dashoffset:0}.pn .ar{opacity:1}.pn .dt{offset-distance:100%}.hero h1 span{background-size:100% 100%}}
+</style>
+</head>
+<body id="top">
+<header class="hd"><div class="w">
+  <a class="logo sf" href="#top">ひだまり税理士事務所</a>
+  <nav><a href="#check">お悩み</a><a href="#fee">料金の目安</a><a href="#year">1 年の予定</a><a href="#faq">質問</a></nav>
+  <a class="bt" href="#cta">無料で相談する</a>
+</div></header>
+
+<section class="hero"><div class="w">
+  <div>
+    <small>碧南市の税理士・社会保険労務士</small>
+    <h1 class="sf">数字の不安を、<br><span>相談できる安心</span>に。</h1>
+    <p>西三河の会社とお店、180 社の経理を見ています。むずかしい言葉は使いません。毎月、数字をいっしょに見ながらお話しします。</p>
+    <div class="bts"><a class="bt gd" href="#cta">初回の相談は無料です</a><span>平日 9〜18 時・土曜も予約でうかがいます</span></div>
+  </div>
+  <div class="pn">
+    <div class="sl">初回<b>60 分</b>無料</div>
+    <small>ある顧問先の、手元に残るお金</small>
+    <svg viewBox="0 0 360 170"><defs><linearGradient id="ag" x2="0" y2="1"><stop offset="0" stop-color="#b8975a" stop-opacity=".35"/><stop offset="1" stop-color="#b8975a" stop-opacity="0"/></linearGradient></defs>
+      <path class="gr" d="M0 40h360M0 80h360M0 120h360M0 160h360"/>
+      <path class="ar" d="M0 150 60 138 120 142 180 110 240 96 300 60 360 40V160H0z"/>
+      <path class="ln" pathLength="1" d="M0 150 60 138 120 142 180 110 240 96 300 60 360 40"/>
+      <circle class="dt" r="6"/>
+    </svg>
+    <div class="kp"><div><b><span data-c="180">0</span><small> 社</small></b>顧問先</div><div><b><span data-c="96">0</span><small> %</small></b>つづけている割合</div><div><b><span data-c="22">0</span><small> 年</small></b>開業から</div></div>
+  </div>
+</div></section>
+
+<section class="sec wh" id="check"><div class="w">
+  <div class="hh" data-r><small>CHECK</small><h2 class="sf">こんなこと、ありませんか。</h2><p>あてはまるものに、しるしを付けてみてください。</p></div>
+  <div class="ck" data-r>
+    <ul id="cks">
+      <li><label><input type="checkbox"><i><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-9"/></svg></i>領収書がたまって、申告の前にあわてる</label></li>
+      <li><label><input type="checkbox"><i><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-9"/></svg></i>いまの税理士と、年に 1 回しか話していない</label></li>
+      <li><label><input type="checkbox"><i><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-9"/></svg></i>インボイスのことが、まだよくわからない</label></li>
+      <li><label><input type="checkbox"><i><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-9"/></svg></i>会社にしたほうが得なのか、知りたい</label></li>
+      <li><label><input type="checkbox"><i><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-9"/></svg></i>利益は出ているのに、お金が残らない</label></li>
+      <li><label><input type="checkbox"><i><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-9"/></svg></i>親の土地や会社を、どう引きつぐか決めていない</label></li>
+    </ul>
+    <div class="mt" id="mt"><small>相談をおすすめする度合い</small><div class="br"><i></i></div><b class="sf" id="mtx">しるしを付けると、ここが変わります。</b><a class="bt gd" href="#cta">このまま相談する</a></div>
+  </div>
+</div></section>
+
+<section class="sec" id="fee"><div class="w">
+  <div class="hh" data-r><small>FEE</small><h2 class="sf">料金の目安を、その場で。</h2><p>つまみを動かすと、月の顧問料の目安が出ます。</p></div>
+  <div class="sim" data-r>
+    <div class="in0">
+      <div class="fd"><span>1 年の売上<b id="sv"></b></span><input type="range" id="rs" min="0" max="9" value="3"></div>
+      <div class="fd"><span>はたらく人の数<b id="ev"></b></span><input type="range" id="re" min="0" max="30" value="3"></div>
+      <div class="fd"><span>帳簿の入力</span><div class="sg" id="g1"><button aria-pressed="true" data-v="0">自分でする</button><button aria-pressed="false" data-v="1">おまかせする</button></div></div>
+      <div class="fd" style="margin:0"><span>打ち合わせ</span><div class="sg" id="g2"><button aria-pressed="false" data-v="0">3 か月ごと</button><button aria-pressed="true" data-v="1">毎月</button></div></div>
+    </div>
+    <div class="out">
+      <small>月の顧問料（税込み）の目安</small>
+      <div class="pr"><span id="pr">0</span><small> 円</small></div>
+      <div class="bk" id="bk"><i style="--c:#e3c78e"></i><i style="--c:#8fa3d1"></i><i style="--c:#6fc1b0"></i><i style="--c:#e79a8a"></i></div>
+      <div class="lg"><span style="--c:#e3c78e">顧問</span><span style="--c:#8fa3d1">帳簿</span><span style="--c:#6fc1b0">給与</span><span style="--c:#e79a8a">打ち合わせ</span></div>
+      <p>決算の申告は、別に <b id="ks">0</b> 円（年 1 回）です。</p>
+    </div>
+  </div>
+  <small>※ 見本のための仮の計算です。実際の料金ではありません。</small>
+</div></section>
+
+<section class="sec wh" id="year"><div class="w">
+  <div class="hh" data-r><small>CALENDAR</small><h2 class="sf">税と手続きの、1 年。</h2><p>月を押すと、その月にあることが出ます。期限の前に、こちらからお声がけします。</p></div>
+  <div data-r><div class="yr" id="yr"></div><div class="yd" id="yd"><b id="ym"></b><ul id="yl"></ul></div></div>
+</div></section>
+
+<section class="sec" id="faq"><div class="w">
+  <div class="hh" data-r><small>FAQ</small><h2 class="sf">よくいただく質問</h2></div>
+  <div class="fq" id="fq" data-r>
+    <div class="on"><button>いまの税理士から、変えても大丈夫ですか。</button><section><p>大丈夫です。資料の引きつぎは、こちらで前の事務所とやりとりします。決算の途中でも変えられます。</p></section></div>
+    <div><button>個人事業でも、お願いできますか。</button><section><p>はい。顧問先の 4 割は個人の方です。確定申告だけのご依頼も受けています。</p></section></div>
+    <div><button>会計ソフトは、何を使えばよいですか。</button><section><p>いまお使いのものを、そのまま使えます。これから入れる方には、仕事の内容に合うものを一緒にえらびます。</p></section></div>
+    <div><button>相談したら、契約しないといけませんか。</button><section><p>いいえ。初回の 60 分は無料で、その場で決める必要はありません。見積もりだけでもどうぞ。</p></section></div>
+  </div>
+</div></section>
+
+<section class="cta" id="cta"><div class="w" data-r>
+  <h2 class="sf">まずは 60 分、<br>お話を聞かせてください。</h2>
+  <p>決算書か、去年の申告書があれば、お持ちください。なくても大丈夫です。</p>
+  <a class="bt gd" href="#top">無料の相談を予約する</a>
+  <small>ひだまり税理士事務所（架空の事務所です。数字・料金は見本です）</small>
+</div></section>
+
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const yen = n => Math.round(n).toLocaleString("ja-JP");
+  const tween = (el, to) => {
+    const from = +(el.dataset.v || 0), t0 = performance.now(); el.dataset.v = to;
+    if (RM) return el.textContent = yen(to);
+    const f = t => { const p = Math.min(1, (t - t0) / 500), e = 1 - Math.pow(1 - p, 3); el.textContent = yen(from + (to - from) * e); if (p < 1 && +el.dataset.v === to) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+  };
+  $$("[data-c]").forEach((el, i) => setTimeout(() => tween(el, +el.dataset.c), 900 + i * 200));
+
+  /* お悩みチェック */
+  const MSG = ["しるしを付けると、ここが変わります。", "ひとつでも、気になったら聞いてください。", "一度、整理してみる時期かもしれません。", "一度、整理してみる時期かもしれません。", "早めのご相談を、おすすめします。", "早めのご相談を、おすすめします。", "すぐに、お話をうかがいたい状態です。"];
+  const cks = $$("#cks input"), mt = $("#mt");
+  cks.forEach(c => c.addEventListener("change", () => { const n = cks.filter(x => x.checked).length; mt.style.setProperty("--v", n / 6); $("#mtx").textContent = MSG[n]; }));
+
+  /* 料金の目安 */
+  const SV = [300, 500, 800, 1000, 1500, 2000, 3000, 5000, 8000, 10000], BASE = [12000, 15000, 18000, 22000, 25000, 28000, 33000, 40000, 50000, 60000];
+  const rs = $("#rs"), re = $("#re"); let g1 = 0, g2 = 1;
+  const calc = () => {
+    const i = +rs.value, emp = +re.value, a = BASE[i], b = g1 ? 8000 + i * 1500 : 0, c = emp * 1000, d = g2 ? 8000 : 0;
+    rs.style.setProperty("--f", i / 9); re.style.setProperty("--f", emp / 30);
+    $("#sv").textContent = SV[i] >= 10000 ? "1 億円" : SV[i].toLocaleString("ja-JP") + " 万円"; $("#ev").textContent = emp ? emp + " 人" : "自分だけ";
+    tween($("#pr"), (a + b + c + d) * 1.1); tween($("#ks"), a * 5 * 1.1);
+    $$("#bk i").forEach((el, k) => el.style.setProperty("--g", [a, b, c, d][k]));
+  };
+  rs.addEventListener("input", calc); re.addEventListener("input", calc);
+  [["#g1", v => g1 = v], ["#g2", v => g2 = v]].forEach(([id, set]) => $$(id + " button").forEach(b => b.addEventListener("click", () => { $$(id + " button").forEach(x => x.setAttribute("aria-pressed", x === b)); set(+b.dataset.v); calc(); })));
+  calc();
+
+  /* 1 年の予定 */
+  const Y = [["法定調書", ["法定調書と給与支払報告書を出す（1 月末）", "償却資産の申告（1 月末）", "源泉所得税の納付（納期の特例の方）"]], ["確定申告", ["所得税の確定申告がはじまる", "医療費やふるさと納税の書類をそろえる"]], ["確定申告", ["所得税の確定申告と納付のしめきり", "個人の消費税の申告（3 月末）"]], ["新年度", ["新しく入った人の社会保険の手続き", "固定資産税の通知がとどく"]], ["法人の申告", ["3 月決算の会社の申告と納付（5 月末）", "自動車税の納付"]], ["住民税", ["住民税の通知がとどく。給与からの天引きが変わる", "労働保険の年度更新がはじまる"]], ["源泉・社保", ["源泉所得税の納付（納期の特例の方）", "社会保険の算定基礎届を出す"]], ["個人事業税", ["個人事業税の 1 回目の納付", "上半期の数字を見なおす"]], ["見なおし", ["決算の見こみを立て、打てる手を考える", "社会保険料の変更が給与に反映される"]], ["賃金", ["最低賃金の改定に合わせて給与を確かめる", "年末調整の書類をくばる準備"]], ["年末調整", ["年末調整の書類を集める", "個人事業税の 2 回目の納付"]], ["年末調整", ["年末調整をして、12 月の給与で精算する", "個人の方は、年内にできる節税の最終確認"]]];
+  const yr = $("#yr"), yd = $("#yd"), mo = new Date().getMonth();
+  yr.innerHTML = Y.map((y, i) => `<button aria-pressed="false" class="${i === mo ? "nw" : ""}" data-i="${i}">${i + 1}<small>${y[0]}</small></button>`).join("");
+  const setM = (i, q) => {
+    $$("button", yr).forEach((b, k) => b.setAttribute("aria-pressed", k === i));
+    const fill = () => { $("#ym").textContent = (i + 1) + " 月"; $("#yl").innerHTML = Y[i][1].map(t => `<li>${t}</li>`).join(""); yd.classList.remove("sw"); };
+    if (q || RM) fill(); else { yd.classList.add("sw"); setTimeout(fill, 240); }
+  };
+  yr.addEventListener("click", e => { const b = e.target.closest("button"); if (b) setM(+b.dataset.i); });
+  setM(mo, true);
+
+  $$("#fq button").forEach(b => b.addEventListener("click", () => b.parentElement.classList.toggle("on")));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
+  $$("[data-r]").forEach(e => io.observe(e));
+})();
+</script>
+<script src="../pick.js" data-k="q" data-base="../"></script>
+</body>
+</html>

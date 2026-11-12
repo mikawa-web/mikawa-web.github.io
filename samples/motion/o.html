@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>和菓子店の見本｜三河ウェブ製作所</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f1e3;--pp:#fffdf7;--ink:#33261f;--sub:#7a6a5d;--az:#6b2d3a;--ac:#d98aa0;--tint:#fbe9ee;--e:cubic-bezier(.2,.8,.2,1)}
+body[data-s=natsu]{--ac:#4f9bb5;--tint:#e4f2f5}
+body[data-s=aki]{--ac:#c9772f;--tint:#f8e8d2}
+body[data-s=fuyu]{--ac:#7f8fb0;--tint:#eceff6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;line-height:1.9;overflow-x:hidden;padding-top:var(--top,0px)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.w{width:min(1080px,100% - 36px);margin-inline:auto}
+.mi{font-family:"Shippori Mincho",serif;font-weight:700}
+#fall{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+
+.hd{position:sticky;top:var(--top,0px);z-index:40;background:rgba(247,241,227,.93);backdrop-filter:blur(8px);border-bottom:1px solid rgba(107,45,58,.15)}
+.hd .w{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px}
+.logo i{width:34px;height:34px;border-radius:50%;background:var(--az);color:#fff;display:grid;place-content:center;font-style:normal;font-size:17px}
+.open{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:5px 14px;border-radius:99px;background:var(--pp);border:1px solid rgba(107,45,58,.2)}
+.open::before{content:"";width:9px;height:9px;border-radius:50%;background:#3fae6a;animation:pu 1.8s infinite}
+.open.cl::before{background:#b0a79c;animation:none}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(63,174,106,.6)}100%{box-shadow:0 0 0 9px rgba(63,174,106,0)}}
+.hd .tel{font-weight:700;background:var(--az);color:#fff;padding:8px 18px;border-radius:99px;font-size:14px;white-space:nowrap}
+.logo,.open{white-space:nowrap}
+@media(max-width:700px){.hd .w{gap:8px}.logo{font-size:15px;gap:6px}.logo i{width:28px;height:28px;font-size:14px}.open{font-size:11px;padding:4px 9px;gap:5px}.hd .tel{display:none}}
+
+/* 最初の画面：のれんが開く */
+.hero{position:relative;height:calc(100vh - var(--top,0px) - 64px);min-height:520px;max-height:760px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 60%,var(--tint),var(--bg) 70%);transition:background .8s}
+.noren{position:absolute;top:0;left:50%;width:min(720px,94vw);transform:translateX(-50%);display:flex;z-index:3;pointer-events:none}
+.noren::before{content:"";position:absolute;left:-3%;right:-3%;top:0;height:12px;background:#4a3528;border-radius:0 0 6px 6px;z-index:1}
+.noren b{flex:1;height:min(46vh,340px);background:var(--az);color:#f7f1e3;display:grid;place-content:center;font-size:clamp(38px,7vw,70px);margin:0 2px;border-radius:0 0 4px 4px;transform-origin:50% 0;animation:nr 2.2s var(--e) forwards;animation-delay:calc(.5s + var(--i)*.08s)}
+@keyframes nr{35%{transform:skewX(calc(var(--d)*4deg))}100%{transform:translateX(calc(var(--d)*118%)) skewX(calc(var(--d)*-9deg)) scaleY(.9)}}
+.hero .in0{text-align:center;position:relative;z-index:2;padding-top:20px}
+.hero .dish{width:min(300px,62vw);margin:0 auto;animation:fl 5s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translateY(-10px)}}
+.hero h1{font-size:clamp(28px,4.4vw,50px);line-height:1.6;letter-spacing:.12em;margin-top:6px}
+.hero p{color:var(--sub);margin-top:6px}
+.tate{position:absolute;top:36px;writing-mode:vertical-rl;font-size:14px;letter-spacing:.4em;color:var(--az);z-index:2}
+.tate.l{left:max(18px,calc(50% - 500px))}.tate.r{right:max(18px,calc(50% - 500px))}
+@media(max-width:700px){.tate{display:none}}
+
+.sec{padding:84px 0}
+.hh{text-align:center;margin-bottom:36px}
+.hh small{display:block;color:var(--ac);font-weight:700;letter-spacing:.3em;font-size:12px;transition:color .6s}
+h2{font-size:clamp(25px,3.3vw,38px);letter-spacing:.1em;line-height:1.6}
+[data-r]{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s var(--e)}
+[data-r].in{opacity:1;transform:none}
+
+/* 季節をえらぶと、色もお菓子も変わる */
+.ki{background:var(--tint);transition:background .8s}
+.kt{display:flex;justify-content:center;gap:10px;margin-bottom:34px}
+.kt button{width:62px;height:62px;border-radius:50%;border:1.5px solid var(--az);background:none;font-family:"Shippori Mincho";font-weight:700;font-size:22px;transition:background .4s,color .4s,transform .4s var(--e)}
+.kt button[aria-pressed=true]{background:var(--az);color:#fff;transform:scale(1.12)}
+.kb{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:860px;margin:0 auto}
+.kb .pic{aspect-ratio:1;background:var(--pp);border-radius:50%;display:grid;place-content:center;box-shadow:0 20px 40px -24px rgba(107,45,58,.5)}
+.kb .pic svg{width:min(240px,50vw);transition:transform .6s var(--e),opacity .3s}
+.kb.sw .pic svg{transform:scale(.4) rotate(-30deg);opacity:0}
+.kb .tx{transition:opacity .3s,transform .5s var(--e)}
+.kb.sw .tx{opacity:0;transform:translateX(20px)}
+.kb .tx i{font-style:normal;color:var(--ac);font-weight:700;font-size:13px}
+.kb .tx h3{font-size:clamp(26px,3.6vw,40px);letter-spacing:.1em}
+.kb .tx p{color:var(--sub);margin:8px 0 14px}
+.kb .tx b{font-size:22px}.kb .tx b small{font-size:12px;font-weight:500;color:var(--sub)}
+@media(max-width:700px){.kb{grid-template-columns:1fr;gap:20px;text-align:center}.kb .pic{width:70%;margin:0 auto}}
+
+/* お品書き：横につまんで送る */
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px max(18px,calc(50vw - 540px)) 26px;scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.dg{cursor:grabbing;scroll-snap-type:none}
+.it{flex:0 0 230px;scroll-snap-align:center;background:var(--pp);border-radius:22px;padding:18px 18px 20px;text-align:center;box-shadow:0 12px 26px -18px rgba(107,45,58,.5);user-select:none;transition:transform .4s var(--e)}
+.it:hover{transform:translateY(-6px)}
+.it svg{width:130px;height:130px;margin:0 auto;display:block;pointer-events:none}
+.it h3{font-size:19px;letter-spacing:.08em}
+.it p{font-size:12px;color:var(--sub);line-height:1.6;min-height:3.2em}
+.it .pr{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.it .pr b{font-size:17px}.it .pr b small{font-size:11px;font-weight:500}
+.it button{border:1.5px solid var(--az);background:none;color:var(--az);border-radius:99px;padding:4px 14px;font-size:13px;font-weight:700;transition:background .3s,color .3s,transform .3s var(--e)}
+.it button:hover{background:var(--az);color:#fff}.it button:active{transform:scale(.9)}
+.pg{width:min(300px,60%);height:3px;background:rgba(107,45,58,.15);margin:0 auto;border-radius:3px;overflow:hidden}
+.pg i{display:block;height:100%;width:30%;background:var(--az);border-radius:3px;transform:translateX(calc(var(--p,0)*233%))}
+/* 取り置きのかご */
+.kago{position:fixed;right:18px;bottom:64px;z-index:45;background:var(--az);color:#fff;border-radius:99px;padding:10px 22px;font-weight:700;font-size:14px;box-shadow:0 12px 26px -10px rgba(107,45,58,.8);display:flex;gap:12px;align-items:center;transform:translateY(160%);transition:transform .6s var(--e)}
+.kago.on{transform:none}
+.kago.bp{animation:bp .45s var(--e)}@keyframes bp{40%{transform:scale(1.14)}}
+.kago em{font-style:normal;background:#fff;color:var(--az);border-radius:99px;padding:0 10px;font-size:13px}
+.fly{position:fixed;left:0;top:0;z-index:46;width:22px;height:22px;border-radius:50%;background:var(--ac);pointer-events:none}
+
+/* 営業の時間と場所 */
+.info{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:14px}
+.wk div{background:var(--pp);border-radius:14px;padding:10px 0;text-align:center;font-size:12px;line-height:1.5;border:2px solid transparent}
+.wk div b{display:block;font-size:17px;font-family:"Shippori Mincho"}
+.wk div.x{opacity:.45}
+.wk div.td{border-color:var(--az);transform:translateY(-6px);box-shadow:0 10px 18px -12px rgba(107,45,58,.7)}
+.info dl{margin-top:20px;font-size:15px}.info dt{float:left;width:5em;color:var(--sub)}.info dd{margin-left:5.5em;border-bottom:1px dashed rgba(107,45,58,.2);padding:6px 0}
+.map{background:var(--pp);border-radius:22px;overflow:hidden;box-shadow:0 12px 26px -18px rgba(107,45,58,.5)}
+.map svg{display:block;width:100%}
+.pin{animation:pn 1.6s var(--e) infinite alternate;transform-box:fill-box;transform-origin:50% 100%}@keyframes pn{to{transform:translateY(-10px)}}
+@media(max-width:700px){.info{grid-template-columns:1fr}.sec{padding:60px 0}.wk div{font-size:10px}}
+
+.cta{text-align:center;background:var(--az);color:#f7f1e3;padding:80px 0 130px}
+.cta a{display:inline-block;margin-top:22px;background:#f7f1e3;color:var(--az);font-weight:700;font-size:clamp(22px,3.4vw,34px);padding:10px 40px;border-radius:99px;font-family:"Shippori Mincho";transition:transform .4s var(--e)}
+.cta a:hover{transform:scale(1.05)}
+.cta small{display:block;margin-top:26px;font-size:12px;opacity:.7}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.noren b{transform:translateX(calc(var(--d)*118%))}[data-r]{opacity:1;transform:none}}
+</style>
+</head>
+<body id="top">
+<canvas id="fall"></canvas>
+<header class="hd"><div class="w">
+  <a class="logo mi" href="#top"><i>月</i>御菓子司 つきのや</a>
+  <span class="open" id="open">確かめています</span>
+  <a class="tel" href="#cta">☎ 0566-00-0000</a>
+</div></header>
+
+<section class="hero">
+  <div class="noren mi"><b style="--i:1;--d:-1">つ</b><b style="--i:0;--d:-1">き</b><b style="--i:0;--d:1">の</b><b style="--i:1;--d:1">や</b></div>
+  <span class="tate l mi">碧南の町で九十年</span><span class="tate r mi">毎朝あんこを炊いています</span>
+  <div class="in0">
+    <svg class="dish" viewBox="0 0 300 200"><ellipse cx="150" cy="168" rx="130" ry="20" fill="#33261f" opacity=".12"/><ellipse cx="150" cy="150" rx="128" ry="26" fill="#3a2a22"/><ellipse cx="150" cy="144" rx="118" ry="20" fill="#5a4034"/><circle cx="104" cy="106" r="44" fill="#fff"/><circle cx="104" cy="106" r="44" fill="url(#sh)"/><path d="M78 92q26-22 52 0" fill="none" stroke="#f3c9d2" stroke-width="5" stroke-linecap="round"/><ellipse cx="196" cy="112" rx="50" ry="38" fill="#f2b6c4"/><path d="M158 124q38 26 78-4q-10 34-42 32t-36-28z" fill="#6f8f4e"/><defs><radialGradient id="sh" cx=".35" cy=".3"><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#d9c9b8" stop-opacity=".5"/></radialGradient></defs></svg>
+    <h1 class="mi">きょうのお菓子、<br>できています。</h1>
+    <p>朝 9 時から、売り切れるまで。</p>
+  </div>
+</section>
+
+<section class="sec ki" id="kisetsu"><div class="w">
+  <div class="hh" data-r><small>SEASONS</small><h2 class="mi">季節のひとつ</h2></div>
+  <div class="kt" id="kt" data-r><button data-s="haru">春</button><button data-s="natsu">夏</button><button data-s="aki">秋</button><button data-s="fuyu">冬</button></div>
+  <div class="kb" id="kb" data-r>
+    <div class="pic"><svg viewBox="0 0 120 120" id="kpic"></svg></div>
+    <div class="tx"><i id="kmon"></i><h3 class="mi" id="kname"></h3><p id="ktext"></p><b><span id="kprice"></span> 円 <small>（税込み・1 個）</small></b></div>
+  </div>
+</div></section>
+
+<section class="sec" id="menu">
+  <div class="hh" data-r><small>MENU</small><h2 class="mi">お品書き</h2><p style="color:var(--sub);font-size:14px">横に送れます。「取り置き」を押すと、右下にたまります。</p></div>
+  <div class="rail" id="rail"></div>
+  <div class="pg"><i id="pg"></i></div>
+</section>
+
+<section class="sec" style="background:var(--tint);transition:background .8s"><div class="w info">
+  <div data-r>
+    <h2 class="mi">お店のこと</h2>
+    <div class="wk" id="wk"></div>
+    <dl><dt>時間</dt><dd>9 時 〜 18 時（売り切れじまい）</dd><dt>休み</dt><dd>水曜日</dd><dt>場所</dt><dd>愛知県碧南市（見本のため架空です）</dd><dt>駐車場</dt><dd>店の前に 4 台</dd></dl>
+  </div>
+  <div class="map" data-r><svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#f1ead8"/><path d="M0 210h400M150 0v300" stroke="#fff" stroke-width="26"/><path d="M0 90h400M290 0v300" stroke="#fff" stroke-width="12"/><path d="M0 262q200-30 400 6" stroke="#b9d6e2" stroke-width="18" fill="none"/><rect x="20" y="110" width="100" height="70" rx="6" fill="#dfe8cf"/><text x="70" y="150" text-anchor="middle" font-size="12" fill="#7a6a5d">公園</text><rect x="176" y="20" width="96" height="50" rx="6" fill="#e6dcc8"/><text x="224" y="50" text-anchor="middle" font-size="12" fill="#7a6a5d">駅</text><rect x="178" y="118" width="60" height="50" rx="6" fill="#6b2d3a"/><text x="208" y="148" text-anchor="middle" font-size="12" fill="#fff">つきのや</text><g class="pin"><path d="M208 112c-16-20-22-28-22-40a22 22 0 0144 0c0 12-6 20-22 40z" fill="#d94f4f"/><circle cx="208" cy="72" r="8" fill="#fff"/></g><text x="318" y="204" font-size="11" fill="#7a6a5d">駅から歩いて 4 分</text></svg></div>
+</div></section>
+
+<section class="cta" id="cta"><div class="w" data-r>
+  <h2 class="mi">取り置きは、お電話で。</h2>
+  <p>「ホームページを見た」とお伝えください。当日のぶんも、うけたまわります。</p>
+  <a href="#top">0566-00-0000</a>
+  <small>御菓子司 つきのや（架空のお店です。電話番号・値段も見本です）</small>
+</div></section>
+<a class="kago" id="kago" href="#cta">取り置き <em id="kn">0 点</em><span id="ks">0 円</span></a>
+
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const P = {
+    sakura: '<ellipse cx="60" cy="62" rx="40" ry="30" fill="#f2b6c4"/><path d="M26 70q34 26 70-2q-8 32-38 30T26 70z" fill="#6f8f4e"/>',
+    mizu: '<path d="M28 44h64l8 44H20z" fill="#7fb7c9" opacity=".85"/><path d="M28 44h64l-6-10H34z" fill="#a9d3df"/><path d="M40 56h18" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".7"/>',
+    kuri: '<path d="M60 22q34 20 34 50a34 26 0 01-68 0q0-30 34-50z" fill="#e2b04a"/><path d="M40 78q20 10 40 0" stroke="#c48a2c" stroke-width="3" fill="none"/>',
+    daifuku: '<circle cx="60" cy="62" r="38" fill="#fff" stroke="#eadfce" stroke-width="2"/><path d="M38 62a22 22 0 0144 0z" fill="#e2586a"/><path d="M38 62h44" stroke="#6b2d3a" stroke-width="5"/>',
+    dora: '<ellipse cx="60" cy="70" rx="42" ry="20" fill="#b9793d"/><ellipse cx="60" cy="64" rx="40" ry="8" fill="#5a3324"/><ellipse cx="60" cy="54" rx="42" ry="20" fill="#c98b4b"/><circle cx="60" cy="52" r="9" fill="none" stroke="#8a5a2a" stroke-width="2.5"/>',
+    dango: '<path d="M60 14v96" stroke="#c9a579" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="36" r="17" fill="#f2b6c4"/><circle cx="60" cy="66" r="17" fill="#fff" stroke="#eadfce" stroke-width="2"/><circle cx="60" cy="96" r="17" fill="#9db673"/>',
+    monaka: '<rect x="24" y="36" width="72" height="50" rx="14" fill="#e3c58c"/><path d="M24 61h72" stroke="#c9a060" stroke-width="3"/><circle cx="60" cy="48" r="6" fill="none" stroke="#c9a060" stroke-width="2.5"/>',
+    yokan: '<path d="M26 46h68v40H26z" fill="#4a2530"/><path d="M26 46l10-12h68l-10 12zM94 46l10-12v40l-10 12z" fill="#6b2d3a"/><path d="M36 54h20" stroke="#fff" stroke-width="3" opacity=".35" stroke-linecap="round"/>'
+  };
+  const pic = k => `<svg viewBox="0 0 120 120">${P[k]}</svg>`;
+
+  /* 営業中かどうかを、いまの時刻で出す */
+  const now = new Date(), dw = now.getDay(), hr = now.getHours(), op = $("#open");
+  const isOpen = dw !== 3 && hr >= 9 && hr < 18;
+  op.textContent = isOpen ? "ただいま営業中（18 時まで）" : dw === 3 ? "本日は定休日です" : hr < 9 ? "本日は 9 時に開きます" : "本日は閉店しました";
+  op.classList.toggle("cl", !isOpen);
+  $("#wk").innerHTML = "日月火水木金土".split("").map((d, i) => `<div class="${i === 3 ? "x" : ""}${i === dw ? " td" : ""}"><b>${d}</b>${i === 3 ? "休み" : "9–18"}</div>`).join("");
+
+  /* 季節 */
+  const S = {
+    haru: ["3 月 〜 5 月", "桜もち", "塩づけの葉で、道明寺を包みました。葉もいっしょにどうぞ。", 220, "sakura"],
+    natsu: ["6 月 〜 8 月", "水ようかん", "井戸水でひやして、つるりと。あずきは北海道の大納言です。", 260, "mizu"],
+    aki: ["9 月 〜 11 月", "栗きんとん", "栗と砂糖だけ。蒸した栗を、ひとつずつ手でしぼります。", 320, "kuri"],
+    fuyu: ["12 月 〜 2 月", "いちご大福", "朝つみのいちごを、白あんで。お昼には売り切れます。", 280, "daifuku"]
+  };
+  const kb = $("#kb"), kts = $$("#kt button");
+  let season;
+  const setS = (s, quick) => {
+    season = s; document.body.dataset.s = s; kts.forEach(b => b.setAttribute("aria-pressed", b.dataset.s === s));
+    const fill = () => { const [m, n, t, p, k] = S[s]; $("#kmon").textContent = m; $("#kname").textContent = n; $("#ktext").textContent = t; $("#kprice").textContent = p; $("#kpic").innerHTML = P[k]; kb.classList.remove("sw"); };
+    if (quick || RM) fill(); else { kb.classList.add("sw"); setTimeout(fill, 320); }
+  };
+  kts.forEach(b => b.addEventListener("click", () => setS(b.dataset.s)));
+  const mo = now.getMonth() + 1; setS(mo >= 3 && mo <= 5 ? "haru" : mo >= 6 && mo <= 8 ? "natsu" : mo >= 9 && mo <= 11 ? "aki" : "fuyu", true);
+
+  /* 季節のものが降る */
+  const cv = $("#fall"), cx = cv.getContext("2d"); let fw, fh, ps = [];
+  const size = () => { fw = cv.width = innerWidth; fh = cv.height = innerHeight; };
+  size(); addEventListener("resize", size);
+  const COL = { haru: "#f2b6c4", natsu: "#9fd0df", aki: "#d9772b", fuyu: "#ffffff" };
+  for (let i = 0; i < (innerWidth < 700 ? 14 : 26); i++) ps.push({ x: Math.random(), y: Math.random(), r: 4 + Math.random() * 6, v: .4 + Math.random() * .8, a: Math.random() * 6.28, w: .01 + Math.random() * .02 });
+  const fall = () => {
+    cx.clearRect(0, 0, fw, fh); cx.fillStyle = COL[season]; cx.globalAlpha = season === "fuyu" ? .9 : .7;
+    ps.forEach(p => {
+      p.y += p.v / fh * (season === "natsu" ? 3 : 1); p.a += p.w; if (p.y > 1.05) { p.y = -.05; p.x = Math.random(); }
+      const x = p.x * fw + (season === "natsu" ? 0 : Math.sin(p.a) * 30), y = p.y * fh;
+      cx.save(); cx.translate(x, y); cx.rotate(season === "natsu" ? 0 : p.a * 2); cx.beginPath();
+      if (season === "fuyu") cx.arc(0, 0, p.r * .6, 0, 6.28); else if (season === "natsu") cx.ellipse(0, 0, 1.2, p.r * 1.6, 0, 0, 6.28); else cx.ellipse(0, 0, p.r, p.r * .55, 0, 0, 6.28);
+      cx.fill(); cx.restore();
+    });
+    requestAnimationFrame(fall);
+  };
+  if (!RM) requestAnimationFrame(fall);
+
+  /* お品書き */
+  const M = [["桜もち", "塩づけの葉で包んだ道明寺。", 220, "sakura"], ["どら焼き", "毎朝焼く皮に、つぶあんをたっぷり。", 200, "dora"], ["三色だんご", "よもぎ・白・桜の 3 つの味。", 160, "dango"], ["最中", "ぱりっとした皮。あんは別づめもできます。", 180, "monaka"], ["練りようかん", "ひと棹を、切り分けて。", 240, "yokan"], ["いちご大福", "冬だけ。朝つみのいちごです。", 280, "daifuku"], ["栗きんとん", "秋だけ。栗と砂糖だけで。", 320, "kuri"], ["水ようかん", "夏だけ。井戸水でひやします。", 260, "mizu"]];
+  const rail = $("#rail");
+  rail.innerHTML = M.map(([n, t, p, k], i) => `<div class="it">${pic(k)}<h3 class="mi">${n}</h3><p>${t}</p><div class="pr"><b>${p}<small> 円</small></b><button data-i="${i}">取り置き</button></div></div>`).join("");
+  const pg = $("#pg"), upd = () => pg.style.setProperty("--p", (rail.scrollLeft / Math.max(1, rail.scrollWidth - rail.clientWidth)).toFixed(3));
+  rail.addEventListener("scroll", upd, { passive: true });
+  let down = false, sx, sl, moved = 0;
+  rail.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; moved = 0; sx = e.clientX; sl = rail.scrollLeft; });
+  addEventListener("pointermove", e => { if (!down) return; const d = e.clientX - sx; moved = Math.abs(d); if (moved > 4) rail.classList.add("dg"); rail.scrollLeft = sl - d; });
+  addEventListener("pointerup", () => { down = false; rail.classList.remove("dg"); });
+
+  /* 取り置きのかご */
+  const kago = $("#kago"); let cnt = 0, sum = 0;
+  rail.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b || moved > 4) return;
+    cnt++; sum += M[b.dataset.i][2];
+    const done = () => { $("#kn").textContent = cnt + " 点"; $("#ks").textContent = sum.toLocaleString("ja-JP") + " 円"; kago.classList.add("on"); kago.classList.remove("bp"); void kago.offsetWidth; kago.classList.add("bp"); };
+    if (RM || !b.animate) return done();
+    const r = b.getBoundingClientRect(), k = kago.getBoundingClientRect(), f = document.createElement("i"); f.className = "fly"; document.body.append(f);
+    const tx = (cnt === 1 ? innerWidth - 120 : k.left + 30), ty = (cnt === 1 ? innerHeight - 90 : k.top + 10);
+    f.animate([{ transform: `translate(${r.left}px,${r.top}px)` }, { transform: `translate(${(r.left + tx) / 2}px,${Math.min(r.top, ty) - 120}px) scale(1.3)`, offset: .5 }, { transform: `translate(${tx}px,${ty}px) scale(.4)` }], { duration: 650, easing: "ease-in-out" }).onfinish = () => { f.remove(); done(); };
+  });
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .2 });
+  $$("[data-r]").forEach(e => io.observe(e));
+})();
+</script>
+<script src="../pick.js" data-k="o" data-base="../"></script>
+</body>
+</html>
