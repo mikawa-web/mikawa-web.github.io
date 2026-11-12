@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>設計図ふうの見本｜三河ウェブ製作所</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d3566;--ln:#d6e8ff;--dim:rgba(214,232,255,.55);--fa:rgba(214,232,255,.22);--ac:#ffd54a;--rd:#ff6b5e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ln);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1.9;overflow-x:hidden;padding-top:var(--top,0px);
+  background-image:linear-gradient(rgba(214,232,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(214,232,255,.09) 1px,transparent 1px),linear-gradient(rgba(214,232,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(214,232,255,.04) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+a{color:inherit;text-decoration:none}
+.w{width:min(1180px,100% - 36px);margin-inline:auto}
+.mo{font-family:"IBM Plex Mono",monospace;letter-spacing:.06em}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.s{fill:none;stroke:var(--ln);stroke-width:1.6}
+.th{fill:none;stroke:var(--dim);stroke-width:1}
+.cl{fill:none;stroke:var(--ac);stroke-width:1;stroke-dasharray:18 5 3 5;opacity:.7}
+.hid{fill:none;stroke:var(--dim);stroke-width:1;stroke-dasharray:6 5}
+.tx{fill:var(--ln);font:600 15px "IBM Plex Mono",monospace;letter-spacing:.04em}
+.fl{fill:var(--bg)}
+
+/* 十字の線と座標 */
+.cx,.cy{position:fixed;z-index:60;background:rgba(255,213,74,.45);pointer-events:none;display:none}
+.cx{left:0;right:0;height:1px;top:0}.cy{top:0;bottom:0;width:1px;left:0}
+@media(hover:hover) and (pointer:fine){.cx,.cy{display:block}}
+
+.hd{position:sticky;top:var(--top,0px);z-index:40;background:rgba(13,53,102,.88);backdrop-filter:blur(6px);border-bottom:1px solid var(--fa)}
+.hd .w{display:flex;align-items:center;gap:22px;height:58px;font-size:13px}
+.hd .logo{font-weight:900;font-size:17px;letter-spacing:.08em}
+.hd .no{color:var(--dim);font-size:11px}
+.hd nav{margin-left:auto;display:flex;gap:22px}
+.hd nav a{position:relative;padding:4px 0}
+.hd nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.hd nav a:hover::after{transform:none}
+.hd .xy{color:var(--ac);font-size:11px;min-width:13em;text-align:right}
+@media(max-width:860px){.hd nav,.hd .xy{display:none}.hd .no{margin-left:auto}}
+
+/* 最初の画面：図面が描かれていく */
+.hero{position:relative;padding:48px 0 0}
+.hero .w{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center}
+.hero small{display:block;color:var(--ac);font-size:12px;margin-bottom:18px}
+.hero h1{font-weight:900;font-size:clamp(34px,4.6vw,64px);line-height:1.3;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border-bottom:2px solid var(--ac)}
+.hero p{margin-top:22px;max-width:27em;color:#e9f2ff}
+.btn{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding:14px 26px;border:1.5px solid var(--ln);font-weight:700;position:relative;overflow:hidden;transition:color .35s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ln);transform:translateX(-101%);transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1}
+.btn:hover{color:var(--bg)}.btn:hover::before{transform:none}
+.d{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s cubic-bezier(.6,0,.2,1) forwards;animation-delay:calc(var(--i,0)*.16s + .2s)}
+.f{opacity:0;animation:fade .8s forwards;animation-delay:calc(var(--i,0)*.16s + .2s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+/* 表題欄 */
+.tb{margin-top:34px;border:1.5px solid var(--ln);display:grid;grid-template-columns:repeat(4,1fr);font-size:13px;background:rgba(13,53,102,.7)}
+.tb div{padding:9px 14px;border-right:1px solid var(--fa);border-bottom:1px solid var(--fa);min-height:62px}
+.tb div:nth-child(4n){border-right:0}.tb div:nth-last-child(-n+4){border-bottom:0}
+.tb i{display:block;font-style:normal;font-size:10px;color:var(--dim)}
+.tb b[data-t]::after{content:"▍";color:var(--ac);animation:bl .7s steps(2) infinite}
+.tb b.done::after{content:""}
+@keyframes bl{50%{opacity:0}}
+@media(max-width:860px){.hero .w{grid-template-columns:1fr}.tb{grid-template-columns:repeat(2,1fr)}.tb div:nth-child(2n){border-right:0}.tb div:nth-last-child(-n+4){border-bottom:1px solid var(--fa)}.tb div:nth-last-child(-n+2){border-bottom:0}}
+
+.sec{padding:110px 0}
+.lab{display:flex;align-items:center;gap:14px;color:var(--ac);font-size:12px;margin-bottom:16px}
+.lab::after{content:"";flex:0 0 90px;height:1px;background:var(--ac)}
+h2{font-weight:900;font-size:clamp(26px,3.4vw,44px);line-height:1.4}
+[data-r]{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+[data-r].in{opacity:1;transform:none}
+
+/* 分解図：スクロールで部品がばらける */
+.ex{height:320vh;position:relative;overflow-x:clip}
+.ex .pin{position:sticky;top:calc(var(--top,0px) + 58px);height:calc(100vh - var(--top,0px) - 58px);display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:center;width:min(1180px,100% - 36px);margin-inline:auto}
+.ex ol{list-style:none;margin-top:26px;border-top:1px solid var(--fa)}
+.ex li{display:flex;gap:16px;padding:9px 0;border-bottom:1px solid var(--fa);color:var(--dim);font-size:14px;transition:color .3s,padding .3s}
+.ex li.on{color:var(--ln);padding-left:12px}
+.ex li.on i{color:var(--ac)}
+.ex li i{font-style:normal}
+.ex svg{max-height:calc(100vh - var(--top,0px) - 120px)}
+.ex g[data-o]{will-change:transform}
+.ex .cap{opacity:var(--p,0)}
+.ex .bar{height:2px;background:var(--fa);margin-top:22px}.ex .bar b{display:block;height:100%;background:var(--ac);width:calc(var(--p,0)*100%)}
+@media(max-width:860px){.ex .pin{grid-template-columns:1fr;align-content:center;gap:0}.ex ol{display:none}.ex h2{font-size:24px}.ex .tx{font-size:25px}.ex svg{max-height:52vh}}
+
+/* 数字の表と、動いている測定値 */
+.spec{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;margin-top:40px;align-items:start}
+table{width:100%;border-collapse:collapse;font-size:15px}
+tr{position:relative;opacity:0;transition:opacity .5s;transition-delay:calc(var(--i)*.12s)}
+.in tr{opacity:1}
+th,td{padding:15px 10px;border-bottom:1px solid var(--fa);text-align:left;font-weight:400}
+th{color:var(--dim);width:36%}
+td b{font:600 22px "IBM Plex Mono",monospace;color:var(--ac)}
+.ms{border:1.5px solid var(--ln);padding:22px;background:rgba(13,53,102,.75)}
+.ms p{font-size:12px;color:var(--dim);display:flex;justify-content:space-between}
+.ms p em{font-style:normal;color:var(--rd);animation:bl 1s steps(2) infinite}
+.ms output{display:block;font:600 clamp(38px,5vw,60px)/1.2 "IBM Plex Mono",monospace;margin:8px 0 14px}
+.ms output small{font-size:.35em;color:var(--dim)}
+.ga{position:relative;height:38px;border-inline:1px solid var(--ln);background:repeating-linear-gradient(90deg,var(--fa) 0 1px,transparent 1px 10%)}
+.ga::before{content:"";position:absolute;inset:0 30%;background:rgba(255,213,74,.14);border-inline:1px dashed var(--ac)}
+.ga b{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--rd);left:50%;transition:left .28s}
+.ga+p{margin-top:8px}
+@media(max-width:860px){.spec{grid-template-columns:1fr}}
+
+/* 工程：線でつながる */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:46px}
+.st{position:relative;padding:0 18px 0 0}
+.st .bx{border:1.5px solid var(--ln);padding:16px;background:var(--bg);clip-path:inset(0 100% 0 0);transition:clip-path .7s cubic-bezier(.7,0,.2,1);transition-delay:calc(var(--i)*.28s)}
+.in .st .bx{clip-path:inset(0)}
+.st .bx i{font-style:normal;color:var(--ac);font-size:12px}
+.st .bx b{display:block;font-size:18px}
+.st .bx span{font-size:13px;color:#e3eeff;line-height:1.7;display:block}
+.st::after{content:"";position:absolute;right:0;top:34px;width:18px;height:1.5px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .3s;transition-delay:calc(var(--i)*.28s + .6s)}
+.in .st::after{transform:none}.st:last-child::after{display:none}
+@media(max-width:860px){.flow{grid-template-columns:1fr;gap:18px}.st{padding:0}.st::after{right:auto;left:26px;top:100%;width:1.5px;height:18px;transform:scaleY(0);transform-origin:top}}
+
+/* 最後：検印が押される */
+.cta{padding:40px 0 150px;overflow-x:clip}
+.cta .in0{position:relative;border:1.5px dashed var(--ln);padding:64px 40px;text-align:center}
+.cta .in0::before,.cta .in0::after{content:"+";position:absolute;font:400 22px "IBM Plex Mono";color:var(--ac);line-height:1}
+.cta .in0::before{left:-7px;top:-12px}.cta .in0::after{right:-7px;bottom:-12px}
+.cta h2{font-size:clamp(28px,4.4vw,58px)}
+.stamp{position:absolute;right:6%;top:-34px;width:104px;height:104px;border:3px solid var(--rd);border-radius:50%;color:var(--rd);display:grid;place-content:center;font-weight:900;font-size:13px;line-height:1.3;background:var(--bg);opacity:0;transform:scale(2.6) rotate(20deg)}
+.stamp b{font-size:26px;border-block:2px solid var(--rd);padding:0 8px}
+.in .stamp{opacity:1;transform:rotate(-12deg);transition:transform .35s cubic-bezier(.5,0,.3,1.5) .5s,opacity .15s .5s}
+footer{border-top:1px solid var(--fa);padding:22px 0 90px;font-size:12px;color:var(--dim)}
+@media(max-width:860px){.sec{padding:70px 0}.stamp{width:78px;height:78px;right:10px;font-size:10px}.stamp b{font-size:19px}.cta .in0{padding:54px 18px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.d{stroke-dashoffset:0}.f,[data-r],tr{opacity:1;transform:none}.st .bx{clip-path:none}.stamp{opacity:1;transform:rotate(-12deg)}}
+</style>
+</head>
+<body id="top">
+<i class="cx"></i><i class="cy"></i>
+<header class="hd"><div class="w">
+  <a class="logo" href="#top">みかわ精工</a>
+  <span class="no mo">DWG No. MS-2026-001</span>
+  <nav><a href="#parts">分解図</a><a href="#spec">加工の範囲</a><a href="#flow">ご依頼の流れ</a><a href="#cta">相談する</a></nav>
+  <span class="xy mo" id="xy">X 000.0　Y 000.0</span>
+</div></header>
+
+<section class="hero"><div class="w">
+  <div>
+    <small class="mo">PRECISION MACHINING / HEKINAN, AICHI</small>
+    <h1>図面どおりを、<br><span>千分の一ミリ</span>まで。</h1>
+    <p>自動車と産業機械の精密部品を削り出して 58 年。試作 1 個から量産まで、碧南の工場で一貫してつくります。</p>
+    <a class="btn" href="#cta">図面を送って相談する <span class="mo">→</span></a>
+  </div>
+  <svg viewBox="0 0 640 540" id="dwg" aria-label="フランジの図面">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 1.5 10 5 0 8.5z" fill="#d6e8ff"/></marker></defs>
+    <path class="cl f" style="--i:0" d="M40 270H470M250 60V480M500 270H630"/>
+    <circle class="s d" pathLength="1" style="--i:1" cx="250" cy="270" r="170"/>
+    <circle class="hid f" style="--i:3" cx="250" cy="270" r="128"/>
+    <circle class="s d" pathLength="1" style="--i:4" cx="250" cy="270" r="58"/>
+    <circle class="th d" pathLength="1" style="--i:5" cx="250" cy="270" r="66"/>
+    <path class="s d" pathLength="1" style="--i:6" d="M238 213V200H262V213"/>
+    <g id="holes">
+      <circle class="s d" pathLength="1" style="--i:6" cx="378" cy="270" r="15"/><circle class="s d" pathLength="1" style="--i:7" cx="314" cy="380.9" r="15"/>
+      <circle class="s d" pathLength="1" style="--i:8" cx="186" cy="380.9" r="15"/><circle class="s d" pathLength="1" style="--i:9" cx="122" cy="270" r="15"/>
+      <circle class="s d" pathLength="1" style="--i:10" cx="186" cy="159.1" r="15"/><circle class="s d" pathLength="1" style="--i:11" cx="314" cy="159.1" r="15"/>
+    </g>
+    <path class="s d" pathLength="1" style="--i:8" d="M520 100H552V200H604V340H552V440H520Z"/>
+    <path class="hid f" style="--i:11" d="M520 212H604M520 328H604"/>
+    <g class="f" style="--i:12">
+      <path class="th" d="M80 270V500M420 270V500M520 440V500M604 340V500"/>
+      <path class="th" marker-start="url(#ar)" marker-end="url(#ar)" d="M80 490H420"/>
+      <path class="th" marker-start="url(#ar)" marker-end="url(#ar)" d="M520 490H604"/>
+      <text class="tx" x="250" y="482" text-anchor="middle">φ340</text><text class="tx" x="562" y="482" text-anchor="middle">84</text>
+    </g>
+    <g class="f" style="--i:14">
+      <path class="th" marker-start="url(#ar)" d="M324 148 380 70H470"/><text class="tx" x="386" y="62">6-φ30 等配</text>
+      <path class="th" marker-start="url(#ar)" d="M292 230 372 196H452"/><text class="tx" x="378" y="188">φ116 H7</text>
+    </g>
+  </svg>
+</div>
+<div class="w"><div class="tb">
+  <div><i>品名</i><b data-t="フランジ（見本）"></b></div><div><i>材質</i><b data-t="S45C"></b></div><div><i>尺度</i><b data-t="1 : 2"></b></div><div><i>公差</i><b data-t="± 0.001 mm"></b></div>
+  <div><i>設計</i><b data-t="みかわ精工"></b></div><div><i>創業</i><b data-t="1968 年"></b></div><div><i>所在地</i><b data-t="愛知県碧南市"></b></div><div><i>図番</i><b class="mo" data-t="MS-2026-001"></b></div>
+</div></div>
+</section>
+
+<section class="ex" id="parts"><div class="pin">
+  <div>
+    <div class="lab mo">FIG. 02 — EXPLODED VIEW</div>
+    <h2>組んだあとまで<br>考えて、削る。</h2>
+    <ol id="pl">
+      <li><i class="mo">01</i>ボルト　M12 の六角穴付き</li><li><i class="mo">02</i>カバー　平面度 0.005</li><li><i class="mo">03</i>ベアリング　はめあい H7</li><li><i class="mo">04</i>ハウジング　5 軸で一体加工</li><li><i class="mo">05</i>シャフト　真円度 0.002</li>
+    </ol>
+    <div class="bar"><b></b></div>
+  </div>
+  <svg viewBox="0 0 700 600" id="exv" aria-label="部品の分解図">
+    <path class="cl" d="M40 548 660 52"/>
+    <g data-o="2"><rect class="s fl" x="250" y="270" width="200" height="60" rx="3" transform="rotate(-38.7 350 300)"/><path class="th" d="M300 322 372 264" /><g class="cap"><path class="th" d="M350 300v-70h60"/><text class="tx" x="416" y="235">05 シャフト</text></g></g>
+    <g data-o="1"><path class="s fl" d="M290 190h120v220h-120z" transform="rotate(-38.7 350 300)"/><path class="hid" d="M290 262h120M290 338h120" transform="rotate(-38.7 350 300)"/><g class="cap"><path class="th" d="M350 300v-120h60"/><text class="tx" x="416" y="185">04 ハウジング</text></g></g>
+    <g data-o="0"><g transform="rotate(-38.7 350 300)"><rect class="s fl" x="325" y="225" width="50" height="150" rx="4"/><circle class="s" cx="350" cy="247" r="13"/><circle class="s" cx="350" cy="353" r="13"/><path class="th" d="M325 270h50M325 330h50"/></g><g class="cap"><path class="th" d="M350 300v100h60"/><text class="tx" x="416" y="405">03 ベアリング</text></g></g>
+    <g data-o="-1"><g transform="rotate(-38.7 350 300)"><rect class="s fl" x="336" y="185" width="28" height="230" rx="2"/><path class="hid" d="M336 268h28M336 332h28"/></g><g class="cap"><path class="th" d="M350 300v110h-60"/><text class="tx" x="284" y="415" text-anchor="end">02 カバー</text></g></g>
+    <g data-o="-2"><g transform="rotate(-38.7 350 300)"><path class="s fl" d="M318 200h20v36h-20zM338 210h50v16h-50zM318 364h20v36h-20zM338 374h50v16h-50z"/></g><g class="cap"><path class="th" d="M350 300v-90h-60"/><text class="tx" x="284" y="205" text-anchor="end">01 ボルト</text></g></g>
+  </svg>
+</div></section>
+
+<section class="sec" id="spec"><div class="w">
+  <div class="lab mo" data-r>TABLE 03 — CAPABILITY</div>
+  <h2 data-r>数字で、<br>お答えします。</h2>
+  <div class="spec" data-r>
+    <table>
+      <tr style="--i:0"><th>加工の精度</th><td><b>± <span data-c="1" data-pre="0.00">0</span></b> mm</td></tr>
+      <tr style="--i:1"><th>加工できる大きさ</th><td>φ <b><span data-c="600">0</span></b> × <b><span data-c="1200">0</span></b> mm まで</td></tr>
+      <tr style="--i:2"><th>月の生産数</th><td><b><span data-c="42000">0</span></b> 個</td></tr>
+      <tr style="--i:3"><th>設備</th><td>5 軸加工機 <b><span data-c="6">0</span></b> 台・旋盤 <b><span data-c="14">0</span></b> 台</td></tr>
+      <tr style="--i:4"><th>見積もりの返事</th><td>最短 <b><span data-c="24">0</span></b> 時間</td></tr>
+    </table>
+    <div class="ms">
+      <p class="mo"><span>三次元測定機　CH-1</span><em>● 測定中</em></p>
+      <output class="mo" id="mv">25.000<small> mm</small></output>
+      <div class="ga"><b id="gp"></b></div>
+      <p class="mo"><span>−0.005</span><span>ねらい 25.000</span><span>+0.005</span></p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="flow"><div class="w">
+  <div class="lab mo" data-r>FIG. 04 — PROCESS</div>
+  <h2 data-r>図面 1 枚から、<br>納品まで。</h2>
+  <div class="flow" data-r>
+    <div class="st" style="--i:0"><div class="bx"><i class="mo">STEP 1</i><b>ご相談</b><span>図面か現物をお送りください。</span></div></div>
+    <div class="st" style="--i:1"><div class="bx"><i class="mo">STEP 2</i><b>お見積もり</b><span>最短 24 時間でお返しします。</span></div></div>
+    <div class="st" style="--i:2"><div class="bx"><i class="mo">STEP 3</i><b>試作</b><span>1 個から。測定の結果も付けます。</span></div></div>
+    <div class="st" style="--i:3"><div class="bx"><i class="mo">STEP 4</i><b>量産</b><span>全数を検査して出荷します。</span></div></div>
+    <div class="st" style="--i:4"><div class="bx"><i class="mo">STEP 5</i><b>納品</b><span>西三河は自社の便で届けます。</span></div></div>
+  </div>
+</div></section>
+
+<section class="cta" id="cta"><div class="w"><div class="in0" data-r>
+  <div class="stamp"><span>みかわ精工</span><b>検</b><span>合格</span></div>
+  <div class="lab mo" style="justify-content:center">CONTACT</div>
+  <h2>図面を、<br>送ってください。</h2>
+  <a class="btn" href="#top">見積もりを頼む <span class="mo">→</span></a>
+</div></div></section>
+<footer><div class="w mo">みかわ精工株式会社（架空の会社です）　© MIKAWA SEIKO — 見本</div></footer>
+
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* 十字の線と座標 */
+  const cx = $(".cx"), cy = $(".cy"), xy = $("#xy");
+  addEventListener("mousemove", e => {
+    cx.style.transform = `translateY(${e.clientY}px)`; cy.style.transform = `translateX(${e.clientX}px)`;
+    xy.textContent = `X ${(e.clientX / 4).toFixed(1).padStart(5, "0")}　Y ${((e.clientY + scrollY) / 4).toFixed(1).padStart(5, "0")}`;
+  }, { passive: true });
+
+  /* 表題欄を 1 文字ずつ打つ */
+  const cells = $$("[data-t]");
+  if (RM) cells.forEach(c => { c.textContent = c.dataset.t; c.classList.add("done"); });
+  else cells.forEach((c, n) => setTimeout(() => {
+    const t = c.dataset.t; let i = 0;
+    const id = setInterval(() => { c.textContent = t.slice(0, ++i); if (i >= t.length) { clearInterval(id); c.classList.add("done"); } }, 55);
+  }, 1500 + n * 380));
+
+  /* 画面に入ったら出す・数える */
+  const count = el => {
+    const to = +el.dataset.c, pre = el.dataset.pre || "", t0 = performance.now();
+    const step = t => { const p = Math.min(1, (t - t0) / 1400), v = Math.round(to * (1 - Math.pow(1 - p, 3))); el.textContent = pre + v.toLocaleString("ja-JP"); if (p < 1) requestAnimationFrame(step); };
+    RM ? el.textContent = pre + to.toLocaleString("ja-JP") : requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("in"); $$("[data-c]", e.target).forEach(count); io.unobserve(e.target);
+  }), { threshold: .2 });
+  $$("[data-r]").forEach(e => io.observe(e));
+
+  /* 分解図と、穴の回転 */
+  const ex = $(".ex"), parts = $$("#exv g[data-o]"), items = $$("#pl li"), holes = $("#holes");
+  const onScroll = () => {
+    const r = ex.getBoundingClientRect(), p = Math.max(0, Math.min(1, -r.top / (r.height - innerHeight)));
+    const e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    parts.forEach(g => { const o = +g.dataset.o * 118 * e; g.setAttribute("transform", `translate(${(o * .78).toFixed(1)} ${(-o * .625).toFixed(1)})`); });
+    ex.style.setProperty("--p", e.toFixed(3));
+    const k = Math.min(4, Math.floor(p * 5.2));
+    items.forEach((li, i) => li.classList.toggle("on", p > .08 && i === k));
+    if (!RM) holes.setAttribute("transform", `rotate(${(scrollY * .12).toFixed(1)} 250 270)`);
+  };
+  addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll); onScroll();
+
+  /* 測定値がゆれる */
+  const mv = $("#mv"), gp = $("#gp");
+  if (!RM) setInterval(() => {
+    const d = Math.round((Math.random() + Math.random() - 1) * 2) / 1000;
+    mv.firstChild.nodeValue = (25 + d).toFixed(3); gp.style.left = (50 + d * 10000) + "%";
+  }, 420);
+})();
+</script>
+<script src="../pick.js" data-k="j" data-base="../"></script>
+</body>
+</html>

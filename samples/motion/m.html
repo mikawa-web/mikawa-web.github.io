@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>手描きの見本｜三河ウェブ製作所</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Yomogi&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ecdfc6;--pp:#fffdf6;--ink:#2b2622;--rd:#d6452b;--bl:#2f5d9e;--e:cubic-bezier(.3,1.5,.5,1);--sk:255px 14px 225px 14px/14px 225px 14px 255px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");color:var(--ink);font-family:"Klee One",serif;font-weight:600;line-height:1.95;overflow-x:hidden;padding-top:var(--top,0px)}
+a{color:inherit;text-decoration:none}
+.w{width:min(1080px,100% - 36px);margin-inline:auto}
+.yo{font-family:"Yomogi",cursive;font-weight:400}
+.wob{filter:url(#wob)}
+.pen{fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.red{stroke:var(--rd)}.blu{stroke:var(--bl)}
+.dr{stroke-dasharray:1;stroke-dashoffset:1}
+.go .dr,.in .dr{animation:dr 1s ease forwards;animation-delay:calc(var(--i,0)*.14s + var(--d0,0s))}
+@keyframes dr{to{stroke-dashoffset:0}}
+
+.hd .w{display:flex;align-items:center;justify-content:space-between;padding:20px 0 0}
+.hd .logo{font-size:22px;position:relative}
+.hd nav{display:flex;gap:26px;font-size:15px}
+.hd nav a{position:relative}
+.hd nav a svg{position:absolute;left:-6px;right:-6px;bottom:-9px;width:calc(100% + 12px);height:10px;overflow:visible}
+.hd nav a:hover .dr{animation:dr .45s ease forwards}
+@media(max-width:760px){.hd nav a:not(:last-child){display:none}}
+
+/* 最初の画面：線が描かれる */
+.hero .w{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:center;padding:50px 0 70px}
+.hero h1{font-size:clamp(34px,5vw,64px);line-height:1.5;letter-spacing:.02em}
+.hero h1 span{position:relative;display:inline-block}
+.hero h1 svg{position:absolute;overflow:visible;pointer-events:none}
+.ul{left:-2%;bottom:-.12em;width:104%;height:.4em}
+.ci{left:-18%;top:-8%;width:136%;height:120%}
+.hero p{margin-top:22px;max-width:27em;font-size:16px}
+.btn{display:inline-block;margin-top:28px;padding:12px 30px;background:var(--pp);border:2.4px solid var(--ink);border-radius:var(--sk);font-size:17px;box-shadow:4px 5px 0 var(--ink);transition:transform .3s var(--e),box-shadow .3s}
+.btn:hover{transform:translate(2px,3px) rotate(-1.5deg);box-shadow:1px 2px 0 var(--ink)}
+.pic{position:relative}
+.pic svg{width:100%;height:auto;overflow:visible}
+.memo{position:absolute;right:-2%;top:-4%;width:150px;padding:20px 14px 16px;background:#ffe36e;font-size:17px;line-height:1.5;text-align:center;box-shadow:3px 6px 12px rgba(60,40,10,.25);transform-origin:50% 0;animation:sw 3.4s ease-in-out infinite alternate}
+.memo::before{content:"";position:absolute;left:50%;top:-12px;width:64px;height:24px;margin-left:-32px;background:rgba(255,255,255,.55);border-inline:1px dashed rgba(0,0,0,.15);transform:rotate(-3deg)}
+@keyframes sw{from{transform:rotate(-5deg)}to{transform:rotate(4deg)}}
+@media(max-width:760px){.hero .w{grid-template-columns:1fr;padding:34px 0 50px}.memo{width:118px;font-size:14px;right:0}}
+
+.sec{padding:80px 0}
+.sec,.hero,.cta{overflow-x:clip}
+.ttl{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.ttl small{font-size:20px;color:var(--rd)}
+h2{font-size:clamp(26px,3.4vw,42px);line-height:1.5}
+[data-r]{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+[data-r].in{opacity:1;transform:none}
+
+/* 写真：落ちてきて、つまんで動かせる */
+.desk{display:flex;flex-wrap:wrap;justify-content:center;margin-top:44px;padding-bottom:20px}
+.po{width:210px;margin:0 -8px 18px;padding:12px 12px 10px;background:var(--pp);box-shadow:2px 6px 16px rgba(60,40,10,.28);cursor:grab;user-select:none;position:relative;
+  opacity:0;transform:translate(var(--x,0px),calc(var(--y,0px) - 160px)) rotate(calc(var(--r) * 3)) scale(1.25);transition:opacity .4s,transform .9s var(--e),box-shadow .3s;transition-delay:calc(var(--i)*.13s)}
+.in .po{opacity:1;transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--r))}
+.po.dg{transition:none;cursor:grabbing;box-shadow:8px 22px 34px rgba(60,40,10,.35);z-index:9}
+.po.up{transform:translate(var(--x,0px),var(--y,0px)) rotate(0deg) scale(1.08);z-index:8;transition-delay:0s}
+.po::before{content:"";position:absolute;left:50%;top:-11px;width:70px;height:22px;margin-left:-35px;background:rgba(255,246,200,.75);transform:rotate(var(--tp,-4deg));box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.po .ph{aspect-ratio:1;background:var(--c);display:grid;place-content:center}
+.po .ph svg{width:130px;height:130px}
+.po p{text-align:center;font-size:17px;line-height:1.4;margin-top:8px}
+.hint{text-align:center;font-size:16px;color:var(--bl)}
+@media(max-width:760px){.po{width:44%;margin:0 2% 22px;padding:8px}.po .ph svg{width:74%;height:auto}.po p{font-size:14px}}
+
+/* 約束：赤えんぴつでしるしが付く */
+.ck{list-style:none;margin-top:30px;display:grid;gap:8px}
+.ck li{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;padding:14px 4px;border-bottom:2px dashed rgba(43,38,34,.3);font-size:clamp(17px,2vw,22px)}
+.ck li small{display:block;font-size:14px;font-weight:400;line-height:1.7}
+.ck svg{width:54px;height:54px;overflow:visible}
+.ck .dr{--d0:.4s}
+
+/* お客さまの声：ふせん */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px;perspective:900px}
+.nt{position:relative;padding:28px 22px 24px;background:var(--c);font-size:18px;line-height:1.75;box-shadow:2px 8px 14px rgba(60,40,10,.22);transform:rotate(var(--r));transform-origin:50% 0;transition:transform .5s var(--e),box-shadow .4s}
+.nt::after{content:"";position:absolute;right:0;bottom:0;border-style:solid;border-width:0 0 26px 26px;border-color:transparent transparent var(--bg) rgba(0,0,0,.14);transition:border-width .4s}
+.nt:hover{transform:rotate(0deg) rotateX(-14deg) translateY(-6px);box-shadow:2px 26px 26px rgba(60,40,10,.26)}
+.nt:hover::after{border-width:0 0 46px 46px}
+.nt b{display:block;margin-top:12px;font-size:14px;font-family:"Klee One";font-weight:600}
+@media(max-width:760px){.notes{grid-template-columns:1fr;gap:22px}}
+
+/* 流れ：はんこが押されていく */
+.card{margin-top:40px;background:var(--pp);border:2.4px solid var(--ink);border-radius:var(--sk);padding:34px 26px 28px;box-shadow:5px 6px 0 var(--ink)}
+.card>p{text-align:center;font-size:19px;color:var(--bl)}
+.sl{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
+.sl div{text-align:center;font-size:14px;line-height:1.5}
+.sl i{position:relative;display:block;width:min(100px,100%);aspect-ratio:1;margin:0 auto 10px;border:2px dashed rgba(43,38,34,.4);border-radius:50%}
+.sl i b{position:absolute;inset:-4px;border:3.5px solid var(--rd);border-radius:50%;color:var(--rd);display:grid;place-content:center;font-size:clamp(15px,2.4vw,26px);font-family:"Klee One";opacity:0;transform:scale(2.8) rotate(calc(var(--r) + 30deg))}
+.in .sl i b{opacity:.9;transform:rotate(var(--r));transition:transform .28s cubic-bezier(.5,0,.4,1.4),opacity .1s;transition-delay:calc(var(--i)*.38s + .3s)}
+.sl span{display:block;font-size:13px;font-weight:400}
+@media(max-width:760px){.sl{gap:4px}.sl div{font-size:12px}.sl span{display:none}.card{padding:26px 12px 22px}}
+
+/* 最後：封筒がひらく */
+.cta{padding:60px 0 150px;text-align:center}
+.env{position:relative;width:min(400px,84vw);aspect-ratio:1.5;margin:170px auto 34px;perspective:900px}
+.env>*{position:absolute;inset:0}
+.env .bk{background:#d3c098;border:2.4px solid var(--ink);border-radius:6px}
+.env svg{width:100%;height:100%;overflow:visible}
+.env .let{inset:8% 7% 6%;background:var(--pp);border:2px solid var(--ink);z-index:1;padding:16px 12px;font-size:clamp(15px,2.1vw,19px);line-height:1.7;transition:transform 1.1s var(--e) .75s}
+.in .env .let{transform:translateY(-62%) rotate(-2deg)}
+.env .fr{z-index:2}
+.env .fp{z-index:3;transform-origin:50% 0;transition:transform .7s ease-in-out .1s,z-index 0s .45s}
+.in .env .fp{transform:rotateX(180deg);z-index:0}
+footer{padding:0 0 90px;text-align:center;font-size:13px;font-weight:400}
+@media(max-width:760px){.sec{padding:56px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.dr{stroke-dashoffset:0}[data-r],.po{opacity:1;transform:rotate(var(--r,0deg))}.sl i b{opacity:.9;transform:rotate(var(--r))}.wob{filter:none}}
+</style>
+</head>
+<body id="top">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence id="tb" type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="1" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter></svg>
+
+<header class="hd"><div class="w">
+  <a class="logo" href="#top">みかわ精工</a>
+  <nav>
+    <a href="#album">工場のようす<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path class="pen red dr" pathLength="1" d="M2 6C20 2 34 9 52 5S84 3 98 6"/></svg></a>
+    <a href="#yaku">お約束<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path class="pen red dr" pathLength="1" d="M2 6C20 2 34 9 52 5S84 3 98 6"/></svg></a>
+    <a href="#cta">おたより<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path class="pen red dr" pathLength="1" d="M2 6C20 2 34 9 52 5S84 3 98 6"/></svg></a>
+  </nav>
+</div></header>
+
+<section class="hero go"><div class="w">
+  <div>
+    <h1><span>手<svg class="ci" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="pen red dr" pathLength="1" style="--d0:1.1s" d="M52 8C22 6 6 28 9 54s28 40 50 36 34-24 31-48S70 6 40 12"/></svg></span>で確かめて、<br>手で<span>渡します。<svg class="ul" viewBox="0 0 100 12" preserveAspectRatio="none"><path class="pen red dr" pathLength="1" style="--d0:1.7s" d="M2 7C18 2 30 11 48 6S80 2 98 8M10 11C40 7 70 9 92 11"/></svg></span></h1>
+    <p>碧南で 58 年、家族と職人 24 人でやっている町の工場です。自動車や機械の小さな部品を、1 個ずつ削っています。</p>
+    <a class="btn" href="#cta">気軽に聞いてみる</a>
+  </div>
+  <div class="pic">
+    <svg class="wob" viewBox="0 0 480 360" aria-label="工場のスケッチ">
+      <path class="pen dr" pathLength="1" style="--i:0" d="M30 310H450"/>
+      <path class="pen dr" pathLength="1" style="--i:1" d="M70 310V170L140 120V170L210 120V170L280 120V170L350 120V310"/>
+      <path class="pen dr" pathLength="1" style="--i:3" d="M350 200H410V310"/>
+      <path class="pen dr" pathLength="1" style="--i:4" d="M372 200V70H396V200"/>
+      <path class="pen blu dr" pathLength="1" style="--i:6" d="M384 58c-10-12 8-18 2-30s14-14 10-26M404 52c8-8-4-14 4-22"/>
+      <path class="pen dr" pathLength="1" style="--i:5" d="M180 310V236H240V310M100 200H140V236H100ZM270 200H310V236H270Z"/>
+      <path class="pen red dr" pathLength="1" style="--i:7" d="M92 150H330"/>
+      <path class="pen dr" pathLength="1" style="--i:8" d="M40 310c0-22 22-22 22 0M420 310c0-28 26-28 26 0M433 310V280"/>
+      <path class="pen blu dr" pathLength="1" style="--i:9" d="M20 96c10-14 30-14 36-2 12-8 28 0 26 12H18c-8 0-6-10 2-10ZM240 50c8-10 24-10 28 0 10-6 22 2 20 10H238c-6 0-4-8 2-10Z"/>
+      <text x="212" y="143" text-anchor="middle" style="font:22px Yomogi;fill:#d6452b">みかわ精工</text>
+    </svg>
+    <div class="memo yo">見積もり<br>無料です！</div>
+  </div>
+</div></section>
+
+<section class="sec" id="album"><div class="w">
+  <div class="ttl" data-r><h2>工場のアルバム</h2><small class="yo">— 見に来てもらうのが、いちばん早い —</small></div>
+  <div class="desk" id="desk" data-r>
+    <div class="po" style="--i:0;--r:-6deg;--c:#cfe3d4"><div class="ph"><svg class="wob" viewBox="0 0 100 100"><path class="pen" d="M12 84V46l20-14v14l20-14v14l20-14v52ZM72 58h16v26M40 84V64h16v20"/></svg></div><p class="yo">うちの工場です</p></div>
+    <div class="po" style="--i:1;--r:4deg;--tp:5deg;--c:#f6d9c9"><div class="ph"><svg class="wob" viewBox="0 0 100 100"><circle class="pen" cx="50" cy="50" r="18"/><circle class="pen" cx="50" cy="50" r="6"/><path class="pen" d="M50 20v10M50 70v10M20 50h10M70 50h10M29 29l7 7M64 64l7 7M71 29l-7 7M36 64l-7 7"/></svg></div><p class="yo">けさ削った歯車</p></div>
+    <div class="po" style="--i:2;--r:-2deg;--c:#d6e1f3"><div class="ph"><svg class="wob" viewBox="0 0 100 100"><path class="pen" d="M14 60h72M14 60V48h10v12M30 60V40h8v20M66 60v-9h16v9M22 66v6M34 66v6M46 66v6M58 66v6M70 66v6"/><path class="pen red" d="M40 44h22"/></svg></div><p class="yo">ノギスは毎日使う</p></div>
+    <div class="po" style="--i:3;--r:7deg;--tp:-7deg;--c:#f3e6b4"><div class="ph"><svg class="wob" viewBox="0 0 100 100"><circle class="pen" cx="50" cy="36" r="13"/><path class="pen" d="M26 84c0-18 10-28 24-28s24 10 24 28M44 34h1M56 34h1M44 42c4 4 8 4 12 0M36 28c4-10 24-10 28 0"/></svg></div><p class="yo">工場長の鈴木です</p></div>
+    <div class="po" style="--i:4;--r:-5deg;--c:#e4d5ee"><div class="ph"><svg class="wob" viewBox="0 0 100 100"><path class="pen" d="M10 68V36h46v32M56 46h18l14 12v10H56"/><circle class="pen" cx="28" cy="70" r="7"/><circle class="pen" cx="72" cy="70" r="7"/><path class="pen blu" d="M2 42h6M0 50h6M2 58h6"/></svg></div><p class="yo">自分たちで届けます</p></div>
+  </div>
+  <p class="hint yo" data-r>↑ 写真は、つまんで動かせます</p>
+</div></section>
+
+<section class="sec" id="yaku"><div class="w">
+  <div class="ttl" data-r><h2>3 つのお約束</h2><small class="yo">— むずかしいことは言いません —</small></div>
+  <ul class="ck" data-r>
+    <li><svg class="wob" viewBox="0 0 54 54"><path class="pen" d="M8 10h34v34H8Z"/><path class="pen red dr" pathLength="1" style="--i:0;stroke-width:4" d="M13 26l11 12L50 6"/></svg><div>1 個からでも、よろこんで。<small>試しに 1 個だけ、でも大丈夫です。</small></div></li>
+    <li><svg class="wob" viewBox="0 0 54 54"><path class="pen" d="M8 10h34v34H8Z"/><path class="pen red dr" pathLength="1" style="--i:4;stroke-width:4" d="M13 26l11 12L50 6"/></svg><div>できないときは、すぐに言います。<small>無理に受けて、あとで困らせません。</small></div></li>
+    <li><svg class="wob" viewBox="0 0 54 54"><path class="pen" d="M8 10h34v34H8Z"/><path class="pen red dr" pathLength="1" style="--i:8;stroke-width:4" d="M13 26l11 12L50 6"/></svg><div>ぜんぶ測ってから、渡します。<small>測った数字の紙も、いっしょに付けます。</small></div></li>
+  </ul>
+</div></section>
+
+<section class="sec"><div class="w">
+  <div class="ttl" data-r><h2>お客さまから</h2><small class="yo">— うれしかった言葉 —</small></div>
+  <div class="notes" data-r>
+    <div class="nt yo" style="--r:-3deg;--c:#ffe36e">急ぎの 1 個を、次の日に持ってきてくれた。助かりました。<b>安城市・機械メーカーさん</b></div>
+    <div class="nt yo" style="--r:2deg;--c:#ffc4cf">「これは無理です」とはっきり言ってくれるので、信頼できます。<b>刈谷市・設計事務所さん</b></div>
+    <div class="nt yo" style="--r:-1.5deg;--c:#bfe3f5">工場を見せてもらって、ここに頼もうと決めました。<b>西尾市・部品商社さん</b></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="w">
+  <div class="ttl" data-r><h2>ご依頼の流れ</h2><small class="yo">— はんこ 5 つで、できあがり —</small></div>
+  <div class="card" data-r>
+    <p class="yo">みかわ精工　ごいらいカード</p>
+    <div class="sl">
+      <div><i><b style="--i:0;--r:-12deg">相談</b></i>まず相談<span>電話でも、紙でも</span></div>
+      <div><i><b style="--i:1;--r:8deg">見積</b></i>見積もり<span>次の日までに</span></div>
+      <div><i><b style="--i:2;--r:-5deg">試作</b></i>ためしに 1 個<span>測った紙つき</span></div>
+      <div><i><b style="--i:3;--r:14deg">量産</b></i>たくさん作る<span>ぜんぶ測ります</span></div>
+      <div><i><b style="--i:4;--r:-9deg">納品</b></i>お届け<span>自分たちの車で</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta" id="cta"><div class="w" data-r>
+  <h2>おたより、<br>待っています。</h2>
+  <div class="env">
+    <div class="bk"></div>
+    <div class="let yo">図面 1 枚でも、<br>手描きのメモでも。<br>まずは聞かせてください。</div>
+    <svg class="fr" viewBox="0 0 300 200" preserveAspectRatio="none"><path d="M0 0 150 112 300 0V200H0Z" fill="#e2d2ae" stroke="#2b2622" stroke-width="2.4" stroke-linejoin="round"/></svg>
+    <svg class="fp" viewBox="0 0 300 200" preserveAspectRatio="none"><path d="M0 0H300L150 112Z" fill="#c9b587" stroke="#2b2622" stroke-width="2.4" stroke-linejoin="round"/><circle cx="150" cy="96" r="13" fill="#d6452b"/></svg>
+  </div>
+  <a class="btn" href="#top">おたよりを書く</a>
+</div></section>
+<footer>みかわ精工株式会社（架空の会社です）　© MIKAWA SEIKO — 見本</footer>
+
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* 線が、手描きのアニメのように小さくゆれる */
+  const tb = $("#tb"); let seed = 1;
+  if (!RM) setInterval(() => { seed = seed % 5 + 1; tb.setAttribute("seed", seed); }, 170);
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .25 });
+  $$("[data-r]").forEach(e => io.observe(e));
+
+  /* 写真をつまんで動かす（マウス）。指のときは、ふれると持ち上がる */
+  let z = 10;
+  $$(".po").forEach(p => {
+    let sx, sy, ox = 0, oy = 0, drag = false;
+    p.addEventListener("pointerdown", e => {
+      if (e.pointerType !== "mouse") { $$(".po.up").forEach(o => o !== p && o.classList.remove("up")); p.classList.toggle("up"); return; }
+      drag = true; sx = e.clientX - ox; sy = e.clientY - oy; p.setPointerCapture(e.pointerId); p.classList.add("dg"); p.style.zIndex = ++z; e.preventDefault();
+    });
+    p.addEventListener("pointermove", e => { if (!drag) return; ox = e.clientX - sx; oy = e.clientY - sy; p.style.setProperty("--x", ox + "px"); p.style.setProperty("--y", oy + "px"); });
+    const end = () => { if (!drag) return; drag = false; p.classList.remove("dg"); p.style.transitionDelay = "0s"; };
+    p.addEventListener("pointerup", end); p.addEventListener("pointercancel", end);
+  });
+})();
+</script>
+<script src="../pick.js" data-k="m" data-base="../"></script>
+</body>
+</html>

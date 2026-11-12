@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大きな文字の見本｜三河ウェブ製作所</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#efece4;--ink:#0c0c0c;--rd:#e6321e;--e:cubic-bezier(.76,0,.24,1)}
+body.inv{--bg:#0c0c0c;--ink:#efece4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",sans-serif;font-weight:500;line-height:1.85;overflow-x:hidden;padding-top:var(--top,0px);transition:background .55s,color .55s}
+a{color:inherit;text-decoration:none}
+.w{width:min(1280px,100% - 36px);margin-inline:auto}
+.dl{font-family:"Dela Gothic One",sans-serif;font-weight:400}
+.an{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.02em}
+
+.hd{position:sticky;top:var(--top,0px);z-index:40;background:var(--bg);border-bottom:3px solid var(--ink);transition:background .55s,border-color .55s}
+.hd .w{display:flex;align-items:center;height:60px;gap:26px}
+.hd .logo{font-size:20px}
+.hd nav{margin-left:auto;display:flex;gap:26px;font-size:13px;font-weight:900}
+.hd .go{background:var(--rd);color:#fff;padding:0 22px;align-self:stretch;display:flex;align-items:center;font-weight:900;font-size:14px;margin-right:-18px}
+@media(max-width:760px){.hd nav{display:none}.hd .go{margin-left:auto}}
+
+/* 最初の画面：流れる大きな文字 */
+.hero{overflow:hidden;border-bottom:3px solid var(--ink)}
+.row{white-space:nowrap;font-size:min(21vw,22vh);line-height:1.04;display:flex;width:max-content;will-change:transform;border-bottom:3px solid var(--ink);clip-path:inset(0 0 100% 0);animation:up .9s var(--e) forwards;animation-delay:calc(var(--i)*.14s)}
+@keyframes up{to{clip-path:inset(0)}}
+.row span{padding-right:.28em}
+.row em{font-style:normal;color:var(--rd)}
+.row.ol{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.row.ol em{-webkit-text-stroke:2px var(--rd)}
+.row.bk{background:var(--ink);color:var(--bg)}
+.row.bk em{color:var(--rd)}
+.intro{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;padding:26px 0}
+.intro p{font-weight:900;font-size:clamp(15px,1.5vw,19px);max-width:36em}
+.arw{display:inline-flex;align-items:center;gap:14px;font-size:clamp(20px,2.4vw,30px);border-bottom:4px solid var(--rd);padding-bottom:2px;white-space:nowrap}
+.arw i{display:inline-block;width:46px;height:4px;background:currentColor;position:relative;transition:width .4s var(--e)}
+.arw i::after{content:"";position:absolute;right:0;top:50%;width:14px;height:14px;border-top:4px solid;border-right:4px solid;transform:translateY(-50%) rotate(45deg)}
+.arw:hover i{width:110px}
+@media(max-width:760px){.intro{grid-template-columns:1fr}}
+
+/* 貼りつく 1 文字が、切り替わる */
+.act{display:grid;grid-template-columns:1fr 1fr;border-bottom:3px solid var(--ink)}
+.kj{position:sticky;top:calc(var(--top,0px) + 60px);height:calc(100vh - var(--top,0px) - 60px);border-right:3px solid var(--ink);overflow:hidden;display:grid}
+.kj b{grid-area:1/1;display:grid;place-content:center;font-size:min(42vw,74vh);line-height:1;clip-path:inset(100% 0 0 0);transition:clip-path .7s var(--e)}
+.kj b.on{clip-path:inset(0)}
+.kj b.gone{clip-path:inset(0 0 100% 0)}
+.kj b:nth-child(2n){background:var(--rd);color:#fff}
+.kj small{position:absolute;left:18px;bottom:14px;font-size:15px;z-index:2;mix-blend-mode:difference;color:#fff}
+.it{min-height:calc(100vh - var(--top,0px) - 60px);padding:8vh 5vw;display:flex;flex-direction:column;justify-content:center;border-bottom:3px solid var(--ink)}
+.it:last-child{border-bottom:0}
+.it i{font-style:normal;font-size:16px;color:var(--rd)}
+.it h2{font-size:clamp(30px,4.4vw,68px);line-height:1.2;margin:10px 0 18px}
+.it p{max-width:26em;font-size:16px}
+@media(max-width:760px){.act{grid-template-columns:1fr}.kj{height:34vh;border-right:0;border-bottom:3px solid var(--ink);z-index:5;background:var(--bg)}.kj b{font-size:30vh}.it{min-height:58vh;padding:40px 18px}}
+
+/* 回って止まる数字 */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:3px solid var(--ink)}
+.nm{padding:54px 3vw 44px;border-right:3px solid var(--ink);overflow:hidden}
+.nm:last-child{border-right:0}
+.nm p{font-weight:900;font-size:14px}
+.nm .v{font-size:clamp(54px,8.4vw,140px);line-height:1;display:flex;align-items:flex-end;white-space:nowrap}
+.nm .v small{font:900 .2em "Noto Sans JP";margin:0 0 .5em .3em}
+.dg{display:inline-block;height:1em;overflow:hidden}
+.dg b{display:block;font-weight:400;transition:transform 2s cubic-bezier(.2,.9,.1,1);transition-delay:calc(var(--k)*.12s)}
+.dg b span{display:block;height:1em}
+.in .dg b{transform:translateY(calc(var(--d)*-10%))}
+@media(max-width:760px){.nums{grid-template-columns:1fr}.nm{border-right:0;border-bottom:3px solid var(--ink);padding:34px 18px}.nm:last-child{border-bottom:0}.nm .v{font-size:27vw}}
+
+/* 行にふれると、赤く塗られる */
+.lst h2{font-size:clamp(15px,1.4vw,18px);padding:22px 0;font-family:"Noto Sans JP";font-weight:900}
+.ln{position:relative;display:block;border-top:3px solid var(--ink);overflow:hidden}
+.ln::before{content:"";position:absolute;inset:0;background:var(--rd);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--e)}
+.ln .w{position:relative;display:grid;grid-template-columns:5em 1fr auto;align-items:center;gap:16px;padding:20px 0;transition:transform .45s var(--e),color .3s}
+.ln b{font-size:clamp(30px,6vw,96px);line-height:1.15;font-weight:400}
+.ln .tg{font-size:14px;text-align:right;min-width:11em}
+.ln:hover::before{transform:none}
+.ln:hover .w{transform:translateX(26px);color:#fff}
+@media(max-width:760px){.ln .w{grid-template-columns:2.6em 1fr}.ln .tg{display:none}}
+
+/* 最後：丸が追いかけて、色が反転する */
+.cta{position:relative;background:#0c0c0c;color:#efece4;overflow:hidden;text-align:center;padding:16vh 0 20vh;cursor:pointer}
+.cta h2{font-size:clamp(60px,17vw,270px);line-height:1;position:relative}
+.cta p{font-weight:900;margin-top:26px;position:relative}
+.blob{position:absolute;left:0;top:0;width:34vmin;height:34vmin;margin:-17vmin 0 0 -17vmin;border-radius:50%;background:#efece4;mix-blend-mode:difference;pointer-events:none;transform:translate(50vw,40vh) scale(var(--sc,1));transition:transform .18s linear}
+.cta:active .blob{--sc:2.4;transition:transform .5s var(--e)}
+footer{background:#0c0c0c;color:#8a877f;border-top:1px solid #333;padding:20px 0 90px;font-size:12px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.row{clip-path:none}.dg b{transform:translateY(calc(var(--d)*-10%))}}
+</style>
+</head>
+<body id="top">
+<header class="hd"><div class="w">
+  <a class="logo dl" href="#top">みかわ精工</a>
+  <nav><a href="#act" data-sc>仕事</a><a href="#nums" data-sc>数字</a><a href="#lst" data-sc>加工</a></nav>
+  <a class="go" href="#cta">相談する</a>
+</div></header>
+
+<section class="hero">
+  <div class="row dl" style="--i:0" data-v="-.5"><span>削る<em>。</em></span><span>削る<em>。</em></span><span>削る<em>。</em></span><span>削る<em>。</em></span><span>削る<em>。</em></span><span>削る<em>。</em></span></div>
+  <div class="row dl ol" style="--i:1" data-v=".5"><span>測る<em>。</em></span><span>測る<em>。</em></span><span>測る<em>。</em></span><span>測る<em>。</em></span><span>測る<em>。</em></span><span>測る<em>。</em></span><span>測る<em>。</em></span></div>
+  <div class="row dl bk" style="--i:2" data-v="-.8"><span>届ける<em>。</em></span><span>届ける<em>。</em></span><span>届ける<em>。</em></span><span>届ける<em>。</em></span><span>届ける<em>。</em></span></div>
+  <div class="w intro">
+    <p>みかわ精工は、自動車と産業機械の精密部品を削り出す、碧南市の町工場です。創業 58 年。やることは、3 つだけ。</p>
+    <a class="arw dl" href="#cta">相談する<i></i></a>
+  </div>
+</section>
+
+<section class="act" id="act">
+  <div class="kj dl" id="kj"><b class="on">削</b><b>測</b><b>磨</b><b>届</b><small class="an" id="kn">01 / 04</small></div>
+  <div>
+    <div class="it"><i class="an">01 — CUT</i><h2 class="dl">千分の一ミリで、削る。</h2><p>5 軸加工機 6 台と旋盤 14 台。むずかしい形も、硬い材料も、1 個から引き受けます。</p></div>
+    <div class="it"><i class="an">02 — MEASURE</i><h2 class="dl">ぜんぶ、測る。</h2><p>抜き取りではなく、全数。三次元測定機で 1 個ずつ確かめ、記録を付けてお渡しします。</p></div>
+    <div class="it"><i class="an">03 — POLISH</i><h2 class="dl">手で、磨く。</h2><p>最後の仕上げは、職人の手。機械では出せない面を、指先の感覚でつくります。</p></div>
+    <div class="it"><i class="an">04 — DELIVER</i><h2 class="dl">約束の日に、届ける。</h2><p>納期を守った割合は 99.2%。西三河へは、自社の便で直接お届けします。</p></div>
+  </div>
+</section>
+
+<section class="nums" id="nums" data-r>
+  <div class="nm"><p>つづけてきた年数</p><div class="v an"><span data-n="58"></span><small>年</small></div></div>
+  <div class="nm"><p>加工の精度</p><div class="v an"><span data-n="0.001"></span><small>mm</small></div></div>
+  <div class="nm"><p>月につくる数</p><div class="v an"><span data-n="42,000"></span><small>個</small></div></div>
+</section>
+
+<section class="lst" id="lst" data-inv>
+  <div class="w"><h2>できる加工</h2></div>
+  <a class="ln" href="#cta"><div class="w"><span class="an">01</span><b class="dl">5 軸加工</b><span class="tg an" data-sc>5-AXIS MACHINING</span></div></a>
+  <a class="ln" href="#cta"><div class="w"><span class="an">02</span><b class="dl">旋盤加工</b><span class="tg an" data-sc>CNC TURNING</span></div></a>
+  <a class="ln" href="#cta"><div class="w"><span class="an">03</span><b class="dl">研削・研磨</b><span class="tg an" data-sc>GRINDING</span></div></a>
+  <a class="ln" href="#cta"><div class="w"><span class="an">04</span><b class="dl">精密測定</b><span class="tg an" data-sc>INSPECTION</span></div></a>
+  <a class="ln" href="#cta" style="border-bottom:3px solid var(--ink)"><div class="w"><span class="an">05</span><b class="dl">試作 1 個から</b><span class="tg an" data-sc>PROTOTYPING</span></div></a>
+  <div style="height:90px"></div>
+</section>
+
+<a class="cta" id="cta" href="#top">
+  <i class="blob" id="blob"></i>
+  <h2 class="dl">相談<br>する。</h2>
+  <p>図面 1 枚から。見積もりは無料です。</p>
+</a>
+<footer><div class="w">みかわ精工株式会社（架空の会社です）　© MIKAWA SEIKO — 見本</div></footer>
+
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* 行が左右に流れ、速くスクロールすると傾く */
+  const rows = $$(".row"); let last = scrollY, sk = 0, t = 0;
+  const kj = $$("#kj b"), kn = $("#kn"), its = $$(".it"), inv = $$("[data-inv]");
+  const tick = () => {
+    const y = scrollY, v = y - last; last = y;
+    sk += (Math.max(-9, Math.min(9, v * .35)) - sk) * .12; t += 1;
+    if (!RM) rows.forEach(r => {
+      const sp = +r.dataset.v, half = r.scrollWidth / 2;
+      let x = ((y * sp * 1.2 + t * sp * .6) % half); if (x > 0) x -= half;
+      r.style.transform = `translateX(${x.toFixed(1)}px) skewX(${(sk * (sp < 0 ? 1 : -1)).toFixed(2)}deg)`;
+    });
+    /* いま読んでいる段の 1 文字にする */
+    const mid = innerHeight * .55; let cur = 0;
+    its.forEach((it, i) => { if (it.getBoundingClientRect().top < mid) cur = i; });
+    kj.forEach((b, i) => { b.classList.toggle("on", i === cur); b.classList.toggle("gone", i < cur); });
+    kn.textContent = `0${cur + 1} / 04`;
+    /* 地の色を反転する */
+    const on = inv.some(s => { const r = s.getBoundingClientRect(); return r.top < innerHeight * .5 && r.bottom > innerHeight * .5; });
+    document.body.classList.toggle("inv", on);
+    requestAnimationFrame(tick);
+  };
+  rows.forEach(r => { r.innerHTML += r.innerHTML; });
+  requestAnimationFrame(tick);
+
+  /* 回る数字を組み立てる */
+  $$("[data-n]").forEach(el => {
+    let k = 0;
+    el.innerHTML = [...el.dataset.n].map(ch => /\d/.test(ch)
+      ? `<i class="dg"><b style="--d:${ch};--k:${k++}">${[0,1,2,3,4,5,6,7,8,9].map(d => `<span>${d}</span>`).join("")}</b></i>` : ch).join("");
+  });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .3 });
+  $$("[data-r]").forEach(e => io.observe(e));
+
+  /* 文字がばらけてから、そろう */
+  const CH = "ABCDEFGHJKLMNPRSTUVXYZ0123456789#/+";
+  $$("[data-sc]").forEach(el => {
+    const src = el.textContent, jp = /[^\x00-\x7f]/.test(src), pool = jp ? "削測磨届精密加工図面検査納品" : CH; let id;
+    const host = el.closest("a") || el;
+    host.addEventListener("mouseenter", () => {
+      if (RM) return; let f = 0; clearInterval(id);
+      id = setInterval(() => {
+        el.textContent = [...src].map((c, i) => c === " " || i < f / 2 ? c : pool[Math.floor(Math.random() * pool.length)]).join("");
+        if (++f > src.length * 2) { clearInterval(id); el.textContent = src; }
+      }, 32);
+    });
+  });
+
+  /* 丸が追いかける */
+  const cta = $("#cta"), blob = $("#blob");
+  cta.addEventListener("pointermove", e => { const r = cta.getBoundingClientRect(); blob.style.transform = `translate(${e.clientX - r.left}px,${e.clientY - r.top}px) scale(var(--sc,1))`; });
+})();
+</script>
+<script src="../pick.js" data-k="l" data-base="../"></script>
+</body>
+</html>

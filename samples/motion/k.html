@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>すりガラスの見本｜三河ウェブ製作所</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+:root{--bg:#f3f1fb;--ink:#1c1a3a;--sub:#5b5878;--v:#7c5cff;--c:#22c1ee;--p:#ff7ab8;--gl:rgba(255,255,255,.55);--bd:rgba(255,255,255,.85);--e:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;line-height:1.9;overflow-x:hidden;padding-top:var(--top,0px)}
+a{color:inherit;text-decoration:none}
+.w{width:min(1120px,100% - 36px);margin-inline:auto}
+.en{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;letter-spacing:-.02em}
+.gl{background:var(--gl);border:1px solid var(--bd);border-radius:26px;backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 20px 60px -24px rgba(70,50,160,.35)}
+.gr{background:linear-gradient(100deg,var(--v),var(--c) 55%,var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* うしろで漂う色 */
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.sky i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;will-change:transform}
+.sky i:nth-child(1){width:46vmax;height:46vmax;left:-10vmax;top:-12vmax;background:#b9a6ff;animation:fl1 19s ease-in-out infinite alternate}
+.sky i:nth-child(2){width:40vmax;height:40vmax;right:-12vmax;top:10vh;background:#9be7ff;animation:fl2 23s ease-in-out infinite alternate}
+.sky i:nth-child(3){width:38vmax;height:38vmax;left:22vw;bottom:-18vmax;background:#ffc3de;animation:fl3 27s ease-in-out infinite alternate}
+@keyframes fl1{to{transform:translate(18vw,22vh) scale(1.2)}}
+@keyframes fl2{to{transform:translate(-22vw,26vh) scale(.85)}}
+@keyframes fl3{to{transform:translate(14vw,-30vh) scale(1.15)}}
+
+.hd{position:sticky;top:calc(var(--top,0px) + 14px);z-index:40;margin-top:14px}
+.hd .w{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 24px;border-radius:99px}
+.hd .logo{font-weight:900;font-size:17px}
+.hd nav{display:flex;gap:4px;font-size:14px;font-weight:700}
+.hd nav a{padding:8px 16px;border-radius:99px;transition:background .3s}
+.hd nav a:hover{background:rgba(255,255,255,.8)}
+.hd nav a.go{background:var(--ink);color:#fff}
+@media(max-width:760px){.hd nav a:not(.go){display:none}}
+
+/* 最初の画面：言葉がにじんで出る、奥行きのあるカード */
+.hero{padding:70px 0 90px;text-align:center}
+.tag{display:inline-flex;gap:8px;align-items:center;padding:6px 16px;border-radius:99px;font-size:13px;font-weight:700}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:#2fd38a;box-shadow:0 0 0 0 rgba(47,211,138,.6);animation:pu 1.8s infinite}
+@keyframes pu{to{box-shadow:0 0 0 10px rgba(47,211,138,0)}}
+.hero h1{font-weight:900;font-size:clamp(36px,6.2vw,84px);line-height:1.22;letter-spacing:-.01em;margin-top:22px}
+.hero h1 span{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(.35em);animation:wd .9s var(--e) forwards;animation-delay:calc(var(--i)*.11s + .15s)}
+@keyframes wd{to{opacity:1;filter:none;transform:none}}
+.hero p{max-width:32em;margin:22px auto 0;color:var(--sub)}
+.bt{display:inline-flex;gap:10px;align-items:center;margin-top:30px;padding:15px 30px;border-radius:99px;font-weight:700;color:#fff;background:var(--ink);position:relative;transition:transform .4s var(--e)}
+.bt::before{content:"";position:absolute;inset:-3px;border-radius:inherit;z-index:-1;background:conic-gradient(from var(--a),var(--v),var(--c),var(--p),var(--v));filter:blur(8px);opacity:.8;animation:sp 4s linear infinite}
+@keyframes sp{to{--a:360deg}}
+.bt:hover{transform:translateY(-3px) scale(1.03)}
+.stage{perspective:1200px;margin-top:60px}
+.mock{position:relative;width:min(760px,100%);margin-inline:auto;aspect-ratio:16/9.4;transform-style:preserve-3d;transform:rotateX(var(--rx,10deg)) rotateY(var(--ry,-8deg));transition:transform .5s var(--e)}
+.mock>*{position:absolute}
+.m0{inset:0;padding:22px;text-align:left}
+.m0 .dots{display:flex;gap:6px}.m0 .dots i{width:10px;height:10px;border-radius:50%;background:rgba(28,26,58,.18)}
+.m0 h3{font-size:15px;margin-top:14px}
+.bars{position:absolute;left:22px;right:22px;bottom:22px;height:52%;display:flex;gap:3%;align-items:flex-end}
+.bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(var(--v),var(--c));height:0;transition:height 1.2s var(--e);transition-delay:calc(var(--i)*.07s + .7s)}
+.on .bars i{height:var(--h)}
+.m1{right:-5%;top:-9%;width:38%;padding:16px 18px;text-align:left;transform:translateZ(70px)}
+.m2{left:-6%;bottom:-11%;width:42%;padding:16px 18px;text-align:left;transform:translateZ(110px)}
+.m1 small,.m2 small{font-size:11px;color:var(--sub);display:block;line-height:1.4}
+.m1 b,.m2 b{font-size:clamp(20px,3vw,34px);line-height:1.3;display:block}
+.m2 .ok{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700;margin-top:4px}
+.m2 .ok::before{content:"✓";width:20px;height:20px;border-radius:50%;background:#2fd38a;color:#fff;display:grid;place-content:center;font-size:12px}
+@media(max-width:760px){.m1{right:-2%;width:46%}.m2{left:-2%;width:52%}.m0 h3{font-size:12px}}
+
+.sec{padding:100px 0}
+.sec>.w>small{font-size:13px;color:var(--v);letter-spacing:.12em}
+h2{font-weight:900;font-size:clamp(28px,4vw,52px);line-height:1.35;margin-top:6px}
+[data-r]{opacity:0;transform:translateY(34px) scale(.97);filter:blur(8px);transition:opacity .9s,transform .9s var(--e),filter .9s}
+[data-r].in{opacity:1;transform:none;filter:none}
+
+/* 重なっていくカード */
+.stack{margin-top:40px}
+.cd{position:sticky;top:calc(var(--top,0px) + 96px + var(--n)*18px);margin-bottom:26px;padding:38px;display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:center;transform-origin:50% 0;transform:scale(var(--s,1));background:rgba(255,255,255,.72)}
+.cd .n{font-size:clamp(40px,6vw,76px);line-height:1}
+.cd h3{font-size:clamp(20px,2.4vw,28px);font-weight:900}
+.cd p{color:var(--sub);font-size:15px;max-width:34em}
+.cd .ic{width:96px;height:96px;border-radius:26px;display:grid;place-content:center;background:linear-gradient(135deg,var(--k1),var(--k2));color:#fff;font-size:40px;box-shadow:0 16px 30px -12px var(--k2)}
+.cd .ic svg{width:46px;height:46px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){.cd{grid-template-columns:1fr;gap:10px;padding:26px}.cd .ic{display:none}}
+
+/* 切り替えると、白い板がすべる */
+.tabs{position:relative;display:inline-flex;padding:6px;border-radius:99px;margin-top:34px;max-width:100%}
+.tabs button{position:relative;z-index:1;border:0;background:none;font:inherit;font-weight:700;color:var(--sub);padding:10px 24px;border-radius:99px;cursor:pointer;transition:color .3s;white-space:nowrap}
+.tabs button[aria-selected=true]{color:var(--ink)}
+.tabs .pill{position:absolute;top:6px;bottom:6px;left:0;border-radius:99px;background:#fff;box-shadow:0 6px 18px -6px rgba(70,50,160,.4);transition:transform .5s var(--e),width .5s var(--e)}
+.panes{display:grid;margin-top:26px}
+.pane{grid-area:1/1;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;opacity:0;visibility:hidden;transform:translateY(18px) scale(.98);transition:opacity .5s,transform .6s var(--e),visibility 0s .5s}
+.pane.on{opacity:1;visibility:visible;transform:none;transition-delay:.12s,.12s,0s}
+.pane h3{font-size:clamp(20px,2.6vw,30px);font-weight:900;line-height:1.5}
+.pane p{color:var(--sub);margin-top:10px;font-size:15px}
+.ring{position:relative;width:min(240px,60vw);aspect-ratio:1;margin-inline:auto}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .bg{stroke:rgba(124,92,255,.14)}
+.ring .fg{stroke:url(#g1);stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.4s var(--e) .25s}
+.pane.on .ring .fg{stroke-dashoffset:calc(100 - var(--v0))}
+.ring b{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font-size:clamp(26px,3.4vw,36px);line-height:1.2}
+.ring b small{font-size:13px;color:var(--sub);font-family:"Zen Kaku Gothic New";letter-spacing:0;font-weight:700}
+@media(max-width:760px){.pane{grid-template-columns:1fr;padding:26px}.tabs button{padding:9px 14px;font-size:13px}}
+
+/* 取引先の帯 */
+.mq{overflow:hidden;margin-top:36px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq div{display:flex;gap:16px;width:max-content;animation:mq 30s linear infinite}
+.mq span{padding:14px 28px;border-radius:18px;font-weight:700;white-space:nowrap;font-size:15px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.cta{padding:20px 0 150px}
+.cta .bx{position:relative;padding:70px 30px;text-align:center;overflow:hidden;border-radius:36px}
+.cta .bx::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from var(--a),rgba(124,92,255,.5),rgba(34,193,238,.5),rgba(255,122,184,.5),rgba(124,92,255,.5));animation:sp 12s linear infinite;z-index:-1;filter:blur(50px)}
+footer{padding:0 0 90px;text-align:center;font-size:12px;color:var(--sub)}
+@media(max-width:760px){.sec{padding:70px 0}.hero{padding:44px 0 80px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1 span,[data-r]{opacity:1;filter:none;transform:none}.bars i{height:var(--h)}}
+</style>
+</head>
+<body id="top">
+<div class="sky"><i></i><i></i><i></i></div>
+<header class="hd"><div class="w gl">
+  <a class="logo" href="#top">みかわ精工</a>
+  <nav><a href="#why">えらばれる理由</a><a href="#num">数字で見る</a><a class="go" href="#cta">相談する</a></nav>
+</div></header>
+
+<section class="hero"><div class="w">
+  <span class="tag gl">本日の稼働 98.6%・見積もり受付中</span>
+  <h1 id="h1">精密加工を、<br>もっと<em class="gr" style="font-style:normal">かるく</em>頼める。</h1>
+  <p>図面を送ると、最短 24 時間で見積もり。進み具合も、検査の結果も、すべて画面で見えます。碧南市の精密部品メーカーです。</p>
+  <a class="bt" href="#cta">図面を送ってみる <span>→</span></a>
+  <div class="stage" id="stage"><div class="mock" id="mock">
+    <div class="m0 gl"><div class="dots"><i></i><i></i><i></i></div><h3>今月の出荷数（千個）</h3>
+      <div class="bars"><i style="--i:0;--h:38%"></i><i style="--i:1;--h:52%"></i><i style="--i:2;--h:46%"></i><i style="--i:3;--h:64%"></i><i style="--i:4;--h:58%"></i><i style="--i:5;--h:76%"></i><i style="--i:6;--h:70%"></i><i style="--i:7;--h:88%"></i><i style="--i:8;--h:82%"></i><i style="--i:9;--h:100%"></i></div></div>
+    <div class="m1 gl"><small>不良率</small><b class="en gr">0.003%</b><small>12 か月の平均</small></div>
+    <div class="m2 gl"><small>図番 MS-2026-001</small><b class="en">± 0.001</b><div class="ok">全数検査　合格</div></div>
+  </div></div>
+</div></section>
+
+<section class="sec" id="why"><div class="w">
+  <small class="en" data-r>WHY US</small>
+  <h2 data-r>頼みやすさを、<br>つくり直しました。</h2>
+  <div class="stack" id="stack">
+    <div class="cd gl" style="--n:0;--k1:#a48bff;--k2:#7c5cff"><b class="n en gr">01</b><div><h3>見積もりは、最短 24 時間</h3><p>図面を送るだけ。担当が直接読み、加工の方法と納期をそえてお返しします。</p></div><div class="ic"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M24 13v11l7 5"/></svg></div></div>
+    <div class="cd gl" style="--n:1;--k1:#7fe3ff;--k2:#22a9ee"><b class="n en gr">02</b><div><h3>試作は、1 個から</h3><p>量産の前に、まず 1 個。測定の結果を付けてお届けするので、安心して次へ進めます。</p></div><div class="ic"><svg viewBox="0 0 48 48"><path d="M24 5 41 14v20L24 43 7 34V14z"/><path d="M7 14l17 9 17-9M24 23v20"/></svg></div></div>
+    <div class="cd gl" style="--n:2;--k1:#ffb0d4;--k2:#ff5fa2"><b class="n en gr">03</b><div><h3>進み具合が、見える</h3><p>いま、どの工程か。いつ出荷か。電話で聞かなくても、いつでも確かめられます。</p></div><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 38V10M6 38h36"/><path d="M12 30l8-9 7 5 12-14"/></svg></div></div>
+    <div class="cd gl" style="--n:3;--k1:#9af0c6;--k2:#1fbf86"><b class="n en gr">04</b><div><h3>全数を、検査して出す</h3><p>三次元測定機で、1 個ずつ。千分の一ミリまで確かめた部品だけを出荷します。</p></div><div class="ic"><svg viewBox="0 0 48 48"><path d="M24 5 40 11v12c0 10-7 17-16 20C15 40 8 33 8 23V11z"/><path d="M17 24l5 5 9-10"/></svg></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="num"><div class="w" style="text-align:center">
+  <small class="en" data-r>IN NUMBERS</small>
+  <h2 data-r>数字で見る、みかわ精工。</h2>
+  <div data-r>
+  <div class="tabs gl" role="tablist" id="tabs"><i class="pill"></i>
+    <button role="tab" aria-selected="true">納期</button><button role="tab" aria-selected="false">品質</button><button role="tab" aria-selected="false">つづけて頼む</button>
+  </div>
+  <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22c1ee"/></linearGradient></defs></svg>
+  <div class="panes" id="panes">
+    <div class="pane gl on"><div class="ring" style="--v0:99.2"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="15.915" pathLength="100" style="stroke-width:3"/><circle class="fg" cx="20" cy="20" r="15.915" pathLength="100" style="stroke-width:3"/></svg><b class="en">99.2%<small>納期を守った割合</small></b></div><div style="text-align:left"><h3>約束した日に、届く。</h3><p>工程をすべて社内で持っているので、外の都合で遅れません。急ぎのときは、最短 3 日で仕上げます。</p></div></div>
+    <div class="pane gl"><div class="ring" style="--v0:99.9"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="15.915" pathLength="100" style="stroke-width:3"/><circle class="fg" cx="20" cy="20" r="15.915" pathLength="100" style="stroke-width:3"/></svg><b class="en">99.997%<small>良品の割合</small></b></div><div style="text-align:left"><h3>不良は、10 万個に 3 個。</h3><p>加工のたびに測り、記録を残します。数字は毎月まとめて、お客さまにお見せしています。</p></div></div>
+    <div class="pane gl"><div class="ring" style="--v0:94"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="15.915" pathLength="100" style="stroke-width:3"/><circle class="fg" cx="20" cy="20" r="15.915" pathLength="100" style="stroke-width:3"/></svg><b class="en">94%<small>2 回目も頼む会社</small></b></div><div style="text-align:left"><h3>一度きりで、終わらない。</h3><p>はじめての 1 個から、10 年つづく量産へ。取引の 9 割以上が、くり返しのご依頼です。</p></div></div>
+  </div></div>
+  <div class="mq" aria-hidden="true"><div id="mq"><span class="gl">自動車の部品</span><span class="gl">産業用ロボット</span><span class="gl">工作機械</span><span class="gl">医療の機器</span><span class="gl">半導体の装置</span><span class="gl">航空機の部品</span><span class="gl">油圧の機器</span></div></div>
+</div></section>
+
+<section class="cta" id="cta"><div class="w"><div class="bx gl" data-r>
+  <h2>まずは図面を、<br class="sp">1 枚だけ。</h2>
+  <p style="color:var(--sub);margin-top:12px">見積もりは無料です。24 時間以内にお返事します。</p>
+  <a class="bt" href="#top">図面を送ってみる <span>→</span></a>
+</div></div></section>
+<footer>みかわ精工株式会社（架空の会社です）　© MIKAWA SEIKO — 見本</footer>
+
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* 見出しを 1 文字ずつに分ける */
+  let n = 0;
+  const split = node => [...node.childNodes].forEach(c => {
+    if (c.nodeType === 3) { const f = document.createDocumentFragment(); [...c.nodeValue].forEach(ch => { const s = document.createElement("span"); s.textContent = ch; s.style.setProperty("--i", n++); f.append(s); }); c.replaceWith(f); }
+    else if (c.tagName === "EM") { const s = document.createElement("span"); s.style.setProperty("--i", n); n += 3; c.replaceWith(s); s.append(c); }
+  });
+  split($("#h1"));
+
+  /* マウスでカードが傾く */
+  const stage = $("#stage"), mock = $("#mock");
+  setTimeout(() => mock.classList.add("on"), 100);
+  if (!RM && matchMedia("(hover:hover)").matches) {
+    stage.addEventListener("mousemove", e => { const r = stage.getBoundingClientRect(); mock.style.setProperty("--ry", ((e.clientX - r.left) / r.width - .5) * 22 + "deg"); mock.style.setProperty("--rx", -((e.clientY - r.top) / r.height - .5) * 18 + "deg"); });
+    stage.addEventListener("mouseleave", () => { mock.style.removeProperty("--rx"); mock.style.removeProperty("--ry"); });
+  }
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .2 });
+  $$("[data-r]").forEach(e => io.observe(e));
+
+  /* 重なったカードは、少し小さくなる */
+  const cds = $$(".cd");
+  const onScroll = () => {
+    if (RM) return;
+    cds.forEach((c, i) => {
+      const nx = cds[i + 1]; if (!nx) return;
+      const gap = nx.getBoundingClientRect().top - c.getBoundingClientRect().top;
+      const p = Math.max(0, Math.min(1, 1 - (gap - 18) / c.offsetHeight));
+      c.style.setProperty("--s", (1 - p * .05).toFixed(3));
+    });
+    const sc = scrollY; if (!matchMedia("(hover:hover)").matches) mock.style.setProperty("--rx", Math.max(0, 10 - sc / 30) + "deg");
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+
+  /* 切り替え */
+  const tabs = $$("#tabs button"), pill = $("#tabs .pill"), panes = $$("#panes .pane");
+  const pick = i => {
+    tabs.forEach((t, k) => t.setAttribute("aria-selected", k === i)); panes.forEach((p, k) => p.classList.toggle("on", k === i));
+    pill.style.width = tabs[i].offsetWidth + "px"; pill.style.transform = `translateX(${tabs[i].offsetLeft}px)`;
+  };
+  tabs.forEach((t, i) => t.addEventListener("click", () => pick(i)));
+  pick(0); addEventListener("resize", () => pick(tabs.findIndex(t => t.getAttribute("aria-selected") === "true")));
+  document.fonts && document.fonts.ready.then(() => pick(0));
+
+  const mq = $("#mq"); mq.innerHTML += mq.innerHTML;
+})();
+</script>
+<script src="../pick.js" data-k="k" data-base="../"></script>
+</body>
+</html>
